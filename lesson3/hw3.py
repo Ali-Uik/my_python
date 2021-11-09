@@ -1,0 +1,5 @@
+num = input('Введите число: ')
+listInt = num.split(',')
+a_tuple = tuple(listInt)
+print(f'Список:{listInt}')
+print(f'Кортеж:{a_tuple}')
