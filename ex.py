@@ -1,3 +1,5 @@
+import math
+
 # Упражнение 1. Почтовый адрес
 # Напишите несколько строк кода, выводящих на экран ваше имя и почтовый адрес. Адрес напишите в формате,
 # принятом в вашей стране. Никакого ввода от пользователя ваша первая программа принимать не будет,
@@ -108,7 +110,7 @@
 # десятичный логарифм числа a;
 # результат возведения числа a в степень b.
 
-# import math
+
 # a = int(input('Первое целое цисло: '))
 # b = int(input('Второе целое цисло: '))
 # plus = a + b
@@ -120,8 +122,7 @@
 # e = a ** b
 # print(
 #     f'Сумма a и b: {plus}\nРазница между a и b: {minus}\nПроизведение a и b: {mult}\nЧастное от деления a на b: {c}'
-#     f'\nОстаток от деления a на b:{d}\nДесятичный логарифм числа a:
-#     {f}\nРезультат возведения числа a в степень b:{e}')
+#     f'\nОстаток от деления a на b:{d}\nДесятичный логарифм числа a:{f}\nРезультат возведения числа a в степень b:{e}')
 
 # Упражнение 11. Потребление топлива
 # (13 строк)
@@ -155,5 +156,15 @@
 # между точками. В модуле math есть удобная функция с названием radians-Функции:radians, служащая как раз для перевода
 # градусов в рад
 
-fist_point = input()
-second_point = input()
+first_point_latitude = float(input('Первая точка широта:'))
+first_point_longitude = float(input('Первая точка долгота:'))
+second_point_latitude = float(input('Вторая точка широта:'))
+second_point_longitude = float(input('Вторая точка долгота:'))
+first_point_latitude_radian = math.radians(first_point_latitude)
+first_point_longitude_radian = math.radians(first_point_longitude)
+second_point_latitude_radian = math.radians(second_point_latitude)
+second_point_longitude_radian = math.radians(second_point_longitude)
+distance = 6371.01 * math.acos(math.sin(first_point_latitude_radian) * math.sin(second_point_latitude_radian) +
+                               math.cos(first_point_latitude_radian) * math.cos(second_point_latitude_radian) *
+                               math.cos(first_point_longitude_radian - second_point_longitude_radian))
+print(distance.__round__(2))
