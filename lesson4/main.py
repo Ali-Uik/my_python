@@ -80,11 +80,64 @@ list1 = [1, 2, 3, 5, 9, 4, 7, 5, 3, 2, 8, 150]
 # print(sum(list1))
 
 # Срезы списков
-list1 = [i for i in range(20)]
-
+# list1 = [i for i in range(20)]
 
 # срезы [start = 0: finish = len(list)-1: step = 1]
-print(list1[5:]) #[5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
-print(list1[:10])
-print(list1[5:10])
-print(list1[5:10:2])
+# print(list1[5:])  # [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+# print(list1[:10])  # [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+# print(list1[5:10])  # [5, 6, 7, 8, 9]
+# print(list1[5:10:2])  # [5, 7, 9]
+# print(list1[::2])  # [0, 2, 4, 6, 8, 10, 12, 14, 16, 18]
+# print(list1)  # [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+
+# копирование списков
+
+# list1 = [i for i in range(10)]
+# list2 = list1.copy()
+# list3 = list1
+# list4 = []
+# for i in list1:
+#     list4.append(i)
+# list5 = [i for i in list1]
+# list6 = list1[::]
+#
+# print(list1, id(list1))  # вводим место хранения в оперативке
+# print(list2, id(list2))  # вводим место хранения в оперативке
+# print(list3, id(list3))  # вводим место хранения в оперативке
+# print(list4, id(list4))  # вводим место хранения в оперативке
+# print(list5, id(list5))  # вводим место хранения в оперативке
+# print(list6, id(list6))  # вводим место хранения в оперативке
+# print(list7, id(list7))  # вводим место хранения в оперативке
+
+
+# break
+# list1 = [i for i in range(10)]
+# for i in list1:
+#     if i == 7:
+#         break
+#     print(i)
+
+# Упр. 110
+#
+# list1 = []
+# while  True:
+#     num = input('Введите число')
+#     if int(num) == 0:
+#         list1.sort()
+#         print(list1)
+#         break
+#     else:
+#         list1.append(int(num))
+
+
+# множество это список без дубликатов - одного типа данные
+
+list1 = []
+while True:
+    num = input('Введите число')
+    if int(num) == 0:
+        list2 = set(list1)
+        print(list2)
+        break
+    else:
+        list1.append(int(num))
