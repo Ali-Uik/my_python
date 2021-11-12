@@ -156,15 +156,15 @@ import math
 # между точками. В модуле math есть удобная функция с названием radians-Функции:radians, служащая как раз для перевода
 # градусов в рад
 
-first_point_latitude = float(input('Первая точка широта:'))
-first_point_longitude = float(input('Первая точка долгота:'))
-second_point_latitude = float(input('Вторая точка широта:'))
-second_point_longitude = float(input('Вторая точка долгота:'))
-first_point_latitude_radian = math.radians(first_point_latitude)
-first_point_longitude_radian = math.radians(first_point_longitude)
-second_point_latitude_radian = math.radians(second_point_latitude)
-second_point_longitude_radian = math.radians(second_point_longitude)
-distance = 6371.01 * math.acos(math.sin(first_point_latitude_radian) * math.sin(second_point_latitude_radian) +
-                               math.cos(first_point_latitude_radian) * math.cos(second_point_latitude_radian) *
-                               math.cos(first_point_longitude_radian - second_point_longitude_radian))
-print(distance.__round__(2))
+# first_point_latitude = float(input('Первая точка широта:'))
+# first_point_longitude = float(input('Первая точка долгота:'))
+# second_point_latitude = float(input('Вторая точка широта:'))
+# second_point_longitude = float(input('Вторая точка долгота:'))
+# first_point_latitude_radian = math.radians(first_point_latitude)
+# first_point_longitude_radian = math.radians(first_point_longitude)
+# second_point_latitude_radian = math.radians(second_point_latitude)
+# second_point_longitude_radian = math.radians(second_point_longitude)
+# distance = 6371.01 * math.acos(math.sin(first_point_latitude_radian) * math.sin(second_point_latitude_radian) +
+#                                math.cos(first_point_latitude_radian) * math.cos(second_point_latitude_radian) *
+#                                math.cos(first_point_longitude_radian - second_point_longitude_radian))
+# print(distance.__round__(2))
