@@ -55,21 +55,47 @@
 # Удаляет продукт из списка при команде delete <product_name>
 # input должен быть один
 
-products = ['milk', 'bread', 'doll']
+# Мой вариант
+# products = ['milk', 'bread', 'doll']
+# while True:
+#     prod = input('введите имя товара: ')
+#     prod_split = prod.split('-')
+#     if prod_split[0] == 'stop':
+#         print(products)
+#         break
+#     elif prod_split[0] == 'add':
+#         products.append(prod_split[1])
+#         continue
+#     elif prod_split[0] == 'del':
+#         products.remove(prod_split[1])
+#         continue
+#     else:
+#         print('Вы не ввели не одного продукта')
+#         continue
+
+
+# Вариант учителья
+products = ['milk', 'bread', 'water']
 while True:
-    prod = input('введите имя товара: ')
-    prod_split = prod.split('-')
-    if prod_split[0] == 'stop':
-        print(products)
+    user_input = input('Введите команду: ')
+    if user_input.lower() == 'stop':
+        print('Программа остановлена')
         break
-    elif prod_split[0] == 'add':
-        products.append(prod_split[1])
-        continue
-    elif prod_split[0] == 'del':
-        products.remove(prod_split[1])
-        continue
+    if len(user_input.split(' ')) == 2:
+        command, product = user_input.split(' ')  # text = list
+        if command == 'add':
+            if product in products:
+                print(f'Данный продукт {product} уже есть в списке {products} ')
+            else:
+                products.append(product)
+                print(f'добавили продукт {product} в список {products}')
+        elif command == 'del':
+            if product in products:
+                products.remove(product)
+                print(f'Удалили продукт {product} из списка {products}')
+            else:
+                print(f'Данного продукта {product} нетув списке {products} ')
+        else:
+            print(f'Вы ввели не верный команду <{command}>')
     else:
-        print('Вы не ввели не одного продукта')
-        continue
-
-
+        print('Вы ввели не верный текст')
