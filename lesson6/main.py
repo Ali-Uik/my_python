@@ -1,7 +1,7 @@
 # Словари (ключ и значение)
 # Как создаь словарь
-dict1 = {}
-dict2 = dict()
+# dict1 = {}
+# dict2 = dict()
 
 # Самым простым примером словаря для понимания - Контакты
 # name = 'Nodir'
@@ -23,12 +23,12 @@ dict2 = dict()
 
 # for item in contacts:  # он вам выплюнет только ключи - не рекомендовано
 #     print(item)
-contacts = {
-    'Ali': +998975103870,
-    'Bonu': +998935093870,
-    'Onam': +998977914863,
-    'Uy': +998883777388
-}
+# contacts = {
+#     'Ali': +998975103870,
+#     'Bonu': +998935093870,
+#     'Onam': +998977914863,
+#     'Uy': +998883777388
+# }
 # for item in contacts.keys():  # обходит по ключам
 #     print(item, ':', contacts[item])
 # for value in contacts.values():
@@ -45,7 +45,7 @@ contacts = {
 # print(numbers)
 
 # Копирование словаря
-contacts2 = contacts.copy()
+# contacts2 = contacts.copy()
 
 # копирование в цикле
 # мой вариант
@@ -76,10 +76,31 @@ contacts2 = contacts.copy()
 # Вложенность
 # списки словарей
 # список пользователей
-userList = [{'id': i, 'name': 'Lyuk'} for i in range(10)]
-print(userList)
-print(userList[5]['name'])
+# userList = [{'id': i, 'name': 'Lyuk'} for i in range(10)]
+# print(userList)
+# print(userList[5]['name'])
 
 # безконечно вбиваем по отдельности Имя, фамилия, возраст(int), город, дом
-# если в имя напишет стоп то программа остановится и вернет список пользователей - список словарей
-# при этом в словаре должен быть 'adress':
+# если в имя напишетe 'stop' то программа остановится и вернет список пользователей - список словарей
+# при этом в словаре должен быть 'adress':{'city':...,'house':....}
+
+from pprint import pprint
+contactsList = []
+while True:
+    name = input('Введите имя: ')
+    if name == 'stop':
+        pprint(contactsList)
+        break
+    l_name = input('Введите фамилия: ')
+    age = int(input('Введите возраст: '))
+    city = input('Введите город: ')
+    house = input('Введите дом: ')
+    contactsList.append({
+        'Имя': name,
+        'Фамилия': l_name,
+        'Возраст': age,
+        'Адресс': {
+            'Город': city,
+            'Дом': house
+        }
+    })
