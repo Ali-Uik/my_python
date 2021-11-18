@@ -85,22 +85,26 @@
 # при этом в словаре должен быть 'adress':{'city':...,'house':....}
 
 from pprint import pprint
+
 contactsList = []
 while True:
     name = input('Введите имя: ')
     if name == 'stop':
         pprint(contactsList)
         break
-    l_name = input('Введите фамилия: ')
-    age = int(input('Введите возраст: '))
-    city = input('Введите город: ')
-    house = input('Введите дом: ')
-    contactsList.append({
-        'Имя': name,
-        'Фамилия': l_name,
-        'Возраст': age,
-        'Адресс': {
-            'Город': city,
-            'Дом': house
-        }
-    })
+    else:
+        l_name = input('Введите фамилия: ')
+        age = int(input('Введите возраст: '))
+        city = input('Введите город: ')
+        house = input('Введите дом: ')
+        contactsList.append({
+            'Имя': name,
+            'Фамилия': l_name,
+            'Возраст': age,
+            'Адресс': {
+                'Город': city,
+                'Дом': house
+            }
+        })
+for item in contactsList:
+    print(f"{item['Имя']} живёт в {item['Адресс']['Город']}")
