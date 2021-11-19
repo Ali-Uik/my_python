@@ -107,4 +107,4 @@ while True:
             }
         })
 for item in contactsList:
-    print(f"{item['Имя']} живёт в {item['Адресс']['Город']}")
+    pprint(f"{item['Имя']} живёт в {item['Адресс']['Город']}")
