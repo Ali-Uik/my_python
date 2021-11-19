@@ -47,3 +47,18 @@ store = {
         },
     ],
 }
+
+for keyGoods, valueGoods in goods.items():
+    for keyStore, valueStore in store.items():
+        for i in valueStore:
+            for key, value in i.items():
+                # print(type(i))
+                print(key)
+                print(value)
+                if valueGoods == keyStore:
+                    print(
+                        f'Порядковый номер товара: {valueGoods}\nНаименовиние товара: {keyGoods}\nОбщее количество: '
+                        f' ')
+
+
+# print(len(goods))
