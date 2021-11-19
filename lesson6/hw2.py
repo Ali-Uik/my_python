@@ -55,10 +55,10 @@ for keyGoods, valueGoods in goods.items():
                 # print(type(i))
                 print(key)
                 print(value)
-                if valueGoods == keyStore:
-                    print(
-                        f'Порядковый номер товара: {valueGoods}\nНаименовиние товара: {keyGoods}\nОбщее количество: '
-                        f' ')
+                # if valueGoods == keyStore:
+                #     print(
+                #         f'Порядковый номер товара: {valueGoods}\nНаименовиние товара: {keyGoods}\nОбщее количество: '
+                #         f' ')
 
 
 # print(len(goods))
