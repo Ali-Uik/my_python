@@ -4,4 +4,10 @@
 # 60 -> 5  2^5 = 32   2^6 = 64
 from math import sin
 
-n = input('Введите челое число:')
+n = int(input('Введите челое число:'))
+for i in range(10):
+    x = 2 ** i
+    if x < n:
+        print(x)
+        print(i)
+        break
