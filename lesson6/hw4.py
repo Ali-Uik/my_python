@@ -13,3 +13,11 @@ if lenstrList == lenstrList:
         print(dic)
 else:
     print('Эррор')
+
+# Вариант учителя
+# list1 = [i for i in range(10)]
+# list2 = [i for i in range(10)]
+# dict2 = {}
+# for i in range(len(list1)):
+#     dict2[list1[i]] = list2[i]*2
+# print(dict2)
