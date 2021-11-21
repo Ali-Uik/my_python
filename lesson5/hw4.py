@@ -2,12 +2,16 @@
 # Выведите показатель степени и саму степень.
 # Операцией возведения в степень пользоваться нельзя!
 # 60 -> 5  2^5 = 32   2^6 = 64
-from math import sin
 
-n = int(input('Введите челое число:'))
-for i in range(10):
-    x = 2 ** i
-    if x < n:
-        print(x)
-        print(i)
-        break
+a = int(input("Введите целое число:"))
+count = 0
+b = 2
+empty = [0]
+while a >= b:
+    count = count + 1
+    b = b * 2
+    empty.append(b)
+for i in empty:
+    if i > a:
+        empty.remove(i)
+print(empty[-1], count)

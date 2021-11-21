@@ -48,17 +48,28 @@ store = {
     ],
 }
 
-for keyGoods, valueGoods in goods.items():
-    for keyStore, valueStore in store.items():
-        for i in valueStore:
-            for key, value in i.items():
-                # print(type(i))
-                print(key)
-                print(value)
-                # if valueGoods == keyStore:
-                #     print(
-                #         f'Порядковый номер товара: {valueGoods}\nНаименовиние товара: {keyGoods}\nОбщее количество: '
-                #         f' ')
+# for keyGoods, valueGoods in goods.items():
+#     for keyStore, valueStore in store.items():
+#         for i in valueStore:
+#             for key, value in i.items():
+#                 # print(type(i))
+#                 # print(key)
+#                 # print(value)
+#                 if valueGoods == keyStore:
+#                     print(
+#                         f'Порядковый номер товара: {valueGoods}\nНаименовиние товара: {keyGoods}\nОбщее количество: '
+#                         f' ')
 
-
-# print(len(goods))
+for product_name, product_id in goods.items():
+    # print(product_name, product_id)
+    total_quantity = 0
+    total_sum = 0
+    for data in store[product_id]:
+        price = data['quantity']*data['price']
+        total_quantity += data['quantity']
+        total_sum = total_sum + price
+        # print(total_quantity)
+    print(f'Номер продукта: {product_id}')
+    print(f'Название продукта: {product_name}')
+    print(f'Общая количество продукта: {total_quantity}')
+    print(f'Общая стоимост: {total_sum}')
