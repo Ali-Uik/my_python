@@ -2,13 +2,10 @@
 nums = [45, 55, 60, 37, 100, 105, 220]
 
 
-def anyList(someList, givenType):
-    return [i for i in someList if type(i) is givenType]
+def anyList(someList, givenIneger):
+    return [i for i in someList if i % givenIneger == 0]
 
 
-list1 = [1, 2, 3, 'a', 'b', 'c']
-intList = clearList(list1, int)
-strList = clearList(list1, str)
+intList = anyList(nums, 15)
+
 print(intList)
-print(strList)
-
