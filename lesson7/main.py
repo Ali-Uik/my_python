@@ -90,16 +90,58 @@
 
 
 # **kwargs
-def calc(a, b, **kwargs):
-    print(kwargs)
-    if 'operation' in kwargs:
-        if kwargs['operation'] == '+':
-            return a+b
-        else:
-            return a*b
-    else:
-        return a-b
+# def calc(a, b, **kwargs):
+#     print(kwargs)
+#     if 'operation' in kwargs:
+#         if kwargs['operation'] == '+':
+#             return a + b
+#         else:
+#             return a * b
+#     else:
+#         return a - b
+#
+#
+# c = calc(5, 6, text='Hello word')
+# print(c)
+#
+#
+# def kushat(burger, cola, **kwargs):
+#     if 'bonus' in kwargs:
+#         print(kwargs['bonus'])
+#     if 'chek' in kwargs:
+#         pay
+#
+#
+#
+# Dilshod = kushat('chizberger', 'cola', bonus='kartoshka', chek='50000')
+
+# Pizzeria
+# def make_pizza(testo, cheese, *args, **kwargs):
+#     print(f'Ваша пицца из {testo} тесто, с сыром {cheese}')
+#     if args and kwargs:
+#         print(f'Доп ингридиенти:{args}')
+#         print(f'Дом информация:{kwargs}')
+#     elif args:
+#         print(f'Доп ингридиенти:{args}')
+#     elif kwargs:
+#         print(f'Дом информация:{kwargs}')
+#
+#
+# print('--------------------------------------------------------------------')
+# make_pizza('дрожевое', 'мацарелла')
+# print('--------------------------------------------------------------------')
+# make_pizza('дрожевое', 'мацарелла', 'помидорчики', 'курочка')
+# print('--------------------------------------------------------------------')
+# make_pizza('дрожевое', 'мацарелла', 'помидорчики', 'курочка', pay='click', price='80000')
+# print('--------------------------------------------------------------------')
+# make_pizza('дрожевое', 'мацарелла', pay='click', price='80000')
+
+def clearList(someList, givenType):
+    return [i for i in someList if type(i) is givenType]
 
 
-c = calc(5, 6,  text='Hello word')
-print(c)
+list1 = [1, 2, 3, 'a', 'b', 'c']
+intList = clearList(list1, int)
+strList = clearList(list1, str)
+print(intList)
+print(strList)
