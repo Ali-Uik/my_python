@@ -56,21 +56,50 @@
 #     print(calculator(a, b))
 
 # Позиционка
-def calculator(a=5, b=5, operation='**'):  # Значение по умалчанию
-    if operation == '+':
-        return a + b
-    elif operation == '-':
-        return a - b
-    elif operation == '*':
-        return a * b
-    elif operation == '/':
-        if b == 0:
-            print(f'b не должен ровним к нулю')
+# def calculator(a=5, b=5, operation='**'):  # Значение по умалчанию
+#     if operation == '+':
+#         return a + b
+#     elif operation == '-':
+#         return a - b
+#     elif operation == '*':
+#         return a * b
+#     elif operation == '/':
+#         if b == 0:
+#             print(f'b не должен ровним к нулю')
+#         else:
+#             return a / b
+#     elif operation == '**':
+#         return a ** b
+#
+#
+# c = calculator(operation='+', a=5, b=6)
+# print(c)
+
+# *args неограниченное количество необязательных позиционных аргументов
+# **kwargs неограниченное количество необязательных именных аргументов
+# *args
+# def calc(a, b, *args):
+#     if args:
+#         return a+b+sum(args)
+#     else:
+#         return a + b
+#
+#
+# c = calc(5, 6, 1, 2, 3, 4, 5, 6, 7, 8, 9)
+# print(c)
+
+
+# **kwargs
+def calc(a, b, **kwargs):
+    print(kwargs)
+    if 'operation' in kwargs:
+        if kwargs['operation'] == '+':
+            return a+b
         else:
-            return a / b
-    elif operation == '**':
-        return a ** b
+            return a*b
+    else:
+        return a-b
 
 
-c = calculator(operation='+', a=5, b=6)
+c = calc(5, 6,  text='Hello word')
 print(c)
