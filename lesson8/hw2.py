@@ -19,17 +19,21 @@ def sectoDaytoHourtomin(a):
             # print(f'{hour} час')
             # list1.append(hour)
             c = b % hour_sec
-            if c > min_sec:
-                minut = c // min_sec
+            if c > min_sec or b > min_sec:
+                hour = 0
+                if c:
+                    minut = c // min_sec
+                elif b:
+                    minut = b // min_sec
                 # print(f'{minut} минути')
                 # list1.append(minut)
-                d = c % min_sec
+                    d = c % min_sec
                 # print(f'{d} секунд')
                 # list1.append(d)
             else:
+                minut = 0
                 d = c
     print(f'{day} день, {hour} час, {minut} минут, {d} секунд')
 
 
-w = sectoDaytoHourtomin(a)
-print(w)
+sectoDaytoHourtomin(a)
