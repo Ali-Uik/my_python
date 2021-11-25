@@ -32,7 +32,7 @@ def sectoDaytoHourtomin(a):
                 # list1.append(d)
             else:
                 minut = 0
-                d = c
+                # d = c
     print(f'{day} день, {hour} час, {minut} минут, {d} секунд')
 
 

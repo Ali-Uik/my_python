@@ -3,8 +3,8 @@
 a = input("Введите число: ")
 b = []
 for i in a:
-    if type(i) == int:
-        b.append(i)
+    if i:
+        b.append(int(i))
     else:
         print('Error')
 
