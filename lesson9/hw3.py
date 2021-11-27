@@ -3,11 +3,18 @@
 # Результат: ['Anna', 'Alla', 'Kazak']
 words = ['Anna', 'Alexey', 'Alla', 'Kazak', 'Dom']
 
-def palindrom(obj):
-    if obj == obj[::-1]:
-        return obj
+
+def palindrom(a):
+    for i in a:
+        if i == i[::-1]:
+            return i
+
 
 print(palindrom(words))
+# list1 = list(filter(palindrom, words))
+# print(list1)
+
+# print(palindrom("aziza"))
 
 # list2 = list(filter(palindrom, words))
 # print(list2)
