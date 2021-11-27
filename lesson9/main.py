@@ -26,7 +26,6 @@
 #
 list1 = [i for i in range(1, 11)]
 
-
 # list2 = list(map(nadva, list1))
 # print(list1)
 # print(list2)
@@ -66,5 +65,11 @@ list1 = [i for i in range(1, 11)]
 
 # lambda <объект>:<что сделать>
 
-list10 = list(map(lambda x: str(x), list1))
-print(list10)
+# list10 = list(map(lambda x: str(x), list1))
+# print(list10)
+
+list2 = [i for i in range(10)]
+list3 = [i for i in range(25, 36)]
+print(list2, list3)
+list4 = list(map(lambda x, y: x + y, list2, list3))
+print(list4)
