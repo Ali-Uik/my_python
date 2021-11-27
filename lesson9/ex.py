@@ -27,10 +27,10 @@ musor = ['plan', 42, 'money', 21, 'help', 14]
 
 
 def choose(obj):
-    if type(obj) is int:
+    if type(obj) == int:
         return obj + 10
-    elif type(obj) is str:
-        return obj + 'Python'
+    elif type(obj) == str:
+        return obj + ' Python'
 
 
 list1 = list(map(choose, musor))
