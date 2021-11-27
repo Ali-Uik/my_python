@@ -41,10 +41,30 @@ list1 = [i for i in range(1, 11)]
 
 
 # filters(функция фиьтрации, что фильтровать(список))
-def even(number):
-    return number % 2 == 0  # возврашаеть False или True
+# def even(number):
+#     return number % 2 == 0  # возврашаеть False или True
+#
+#
+# list5 = list(filter(even, list1))
+# print(list5)
 
+# Lambda функции
+# def get_str(number):
+#     return str(number)
+#
+#
+# list8 = list(map(get_str, list1))
+# print(list8)
+#
+#
+# def get_int(str1):
+#     return int(str1)
+#
+#
+# list9 = list(map(get_int, list8))
+# print(list9)
 
-list5 = list(filter(even, list1))
-print(list5)
+# lambda <объект>:<что сделать>
 
+list10 = list(map(lambda x: str(x), list1))
+print(list10)
