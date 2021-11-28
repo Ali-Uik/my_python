@@ -5,14 +5,14 @@ words = ['Anna', 'Alexey', 'Alla', 'Kazak', 'Dom']
 
 
 def palindrom(a):
-    for i in a:
-        if i == i[::-1]:
-            return i
+    return a, a[::-1]
 
 
-print(palindrom(words))
-# list1 = list(filter(palindrom, words))
-# print(list1)
+
+
+# print(palindrom(words))
+list1 = list(filter(palindrom, words))
+print(list1)
 
 # print(palindrom("aziza"))
 
