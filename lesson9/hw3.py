@@ -4,18 +4,14 @@
 words = ['Anna', 'Alexey', 'Alla', 'Kazak', 'Dom']
 
 
+# version 1
 def palindrom(a):
-    return a, a[::-1]
+    return a.lower() == a[::-1].lower()
 
 
-# print(palindrom(words))
 list1 = list(filter(palindrom, words))
 print(list1)
 
-# print(palindrom("aziza"))
-
-# list2 = list(filter(palindrom, words))
-# print(list2)
-#
-# list3 = list(map(lambda x: x == x[::-1], words))
-# print(list3)
+# version 2
+list3 = list(filter(lambda x: x.lower() == x[::-1].lower(), words))
+print(list3)
