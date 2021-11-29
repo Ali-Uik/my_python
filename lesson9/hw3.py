@@ -8,8 +8,6 @@ def palindrom(a):
     return a, a[::-1]
 
 
-
-
 # print(palindrom(words))
 list1 = list(filter(palindrom, words))
 print(list1)
@@ -18,6 +16,6 @@ print(list1)
 
 # list2 = list(filter(palindrom, words))
 # print(list2)
-
+#
 # list3 = list(map(lambda x: x == x[::-1], words))
 # print(list3)

@@ -5,16 +5,17 @@
 
 scores = [66, 90, 68, 59, 76, 60, 88, 74, 81, 65]
 
-# def version
-# def func(num):
-#     return num > 75
-#
-#
-# list1 = list(filter(func, scores))
-# print(list1)
 
+# def version
+def func(num):
+    return num > 75
+
+
+list1 = list(filter(func, scores))
+print(list1)
 
 # lambda version
 
-list2 = list(map(lambda obj: obj > 75, scores))
+
+list2 = list(filter(lambda obj: obj > 75, scores))
 print(list2)
