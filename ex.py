@@ -182,15 +182,35 @@ import math
 # Свое просторечное название (loonie) она получила от изображения полярной гагары
 # (loon) на ней. Двухдолларовая монета, вышедшая девятью годами позже, была прозвана toonie, как комбинация из слов два
 # (two) и loonie.
-one = 0.01
-five = 0.05
-ten = 0.1
-twenty_five = 0.25
+hundred_thousand = 100000
+fifty_thousand = 50000
+twenty_thousand = 20000
+ten_thousand = 10000
+five_thousand = 5000
+two_thousand = 2000
+thousand = 1000
+five_hundred = 500
+two_hundred = 200
+hundred = 100
+fifty = 50
 
-sum = float(input('Umumiy summani kiriting: '))
+price = float(input('Umumiy summani kiriting: '))
 cash = float(input('Mijoz to\'lov qilgan summasini kiriting: '))
-sdacha = sum - cash
+changeList = []
+if price > 100000:
+    price = price - price * 0.01
+    change = cash - price
+    change_fifty_thousand = change // fifty_thousand
+    changeList.append(change_fifty_thousand)
+    change_twenty_thousand = change % five_thousand // twenty_thousand
+    changeList.append(change_twenty_thousand)
+    change_ten_thousand = change % five_thousand % twenty_thousand // ten_thousand
+    changeList.append(change_ten_thousand)
+    change_five_thousand = change % five_thousand % twenty_thousand % ten_thousand // fifty_thousand
+    changeList.append(change_five_thousand)
 
-sdachainmoney = sdacha // 100
-sdachainmoneyIntwenty_five = sdacha % 100 // twenty_five
-print(sdachainmoney)
+
+
+else:
+    change = cash - price
+    print(change)
