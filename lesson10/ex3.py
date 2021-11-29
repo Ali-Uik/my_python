@@ -2,7 +2,7 @@ file = open('mbox-short.txt', mode='r', encoding='utf-8')
 count = {}
 for line in file:
     if line.startswith('From '):
-        # data = line.split(' ')
+        data = line.split(' ')
         # time = data[6].split(':')
         # hours = time[0]
         hours = line.split(' ')[6].split(':')[0]
