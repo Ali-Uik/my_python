@@ -4,13 +4,11 @@
 from itertools import groupby
 
 file = open('romeo.txt', mode='r', encoding='utf-8')
-data = []
-for line in file:
-    for i in line:
-        data.append(i)
-data_str = ''
-for i in data:
-    if i != '\n':
-        data_str = data_str + str(i)
-data3 = data_str.split(' ')
-print(data_str)
+a = file.read()
+b = a.split()
+sor = sorted(b)
+not_dub = []
+for i in sor:
+    if i not in not_dub:
+        not_dub.append(i)
+print(not_dub)
