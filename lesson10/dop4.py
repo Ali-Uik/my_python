@@ -8,8 +8,8 @@ def read_last(file):
     # b = a.split()
     # print(b)
     for line in file2:
-        data = line.split()
-        print(data)
+        # data = line.split()
+        print(line)
     # data2 = data.split()
     # for line in file2:
     #     print(line[0])
