@@ -193,24 +193,59 @@ five_hundred = 500
 two_hundred = 200
 hundred = 100
 fifty = 50
-
+bill = ['50 000 so\'mlik: ', '20 000 so\'mlik: ', '10 000 so\'mlik: ', '5 000 so\'mlik: ', '2 000 so\'mlik: ',
+        '1 000 so\'mlik: ', '500 so\'mlik: ', '200 so\'mlik: ', '100 so\'mlik: ', '50 so\'mlik: ']
+changeList = []
 price = float(input('Umumiy summani kiriting: '))
 cash = float(input('Mijoz to\'lov qilgan summasini kiriting: '))
-changeList = []
-if price > 100000:
+
+if price >= 100000:
     price = price - price * 0.01
     change = cash - price
+    print(f'1% skidkadan keyingi summe: {price}\nQaytim: {change}')
     change_fifty_thousand = change // fifty_thousand
     changeList.append(change_fifty_thousand)
-    change_twenty_thousand = change % five_thousand // twenty_thousand
+    change_twenty_thousand = change % fifty_thousand // twenty_thousand
     changeList.append(change_twenty_thousand)
-    change_ten_thousand = change % five_thousand % twenty_thousand // ten_thousand
+    change_ten_thousand = change % fifty_thousand % twenty_thousand // ten_thousand
     changeList.append(change_ten_thousand)
-    change_five_thousand = change % five_thousand % twenty_thousand % ten_thousand // fifty_thousand
+    change_five_thousand = change % fifty_thousand % twenty_thousand % ten_thousand // five_thousand
     changeList.append(change_five_thousand)
-
+    change_two_thousand = change % fifty_thousand % twenty_thousand % ten_thousand % five_thousand // two_thousand
+    changeList.append(change_two_thousand)
+    change_thousand = change % fifty_thousand % twenty_thousand % ten_thousand % five_thousand % two_thousand // thousand
+    changeList.append(change_thousand)
+    change_five_hundred = change % fifty_thousand % twenty_thousand % ten_thousand % five_thousand % two_thousand % thousand // five_hundred
+    changeList.append(change_five_hundred)
+    change_two_hundred = change % fifty_thousand % twenty_thousand % ten_thousand % five_thousand % two_thousand % thousand % five_hundred // two_hundred
+    changeList.append(change_two_hundred)
+    change_hundred = change % fifty_thousand % twenty_thousand % ten_thousand % five_thousand % two_thousand % thousand % five_hundred % two_hundred // hundred
+    changeList.append(change_hundred)
+    change_fifty = change % fifty_thousand % twenty_thousand % ten_thousand % five_thousand % two_thousand % thousand % five_hundred % two_hundred % hundred // fifty
+    changeList.append(change_fifty)
+    print(changeList)
 
 
 else:
     change = cash - price
-    print(change)
+    change_fifty_thousand = change // fifty_thousand
+    changeList.append(change_fifty_thousand)
+    change_twenty_thousand = change % fifty_thousand // twenty_thousand
+    changeList.append(change_twenty_thousand)
+    change_ten_thousand = change % fifty_thousand % twenty_thousand // ten_thousand
+    changeList.append(change_ten_thousand)
+    change_five_thousand = change % fifty_thousand % twenty_thousand % ten_thousand // five_thousand
+    changeList.append(change_five_thousand)
+    change_two_thousand = change % fifty_thousand % twenty_thousand % ten_thousand % five_thousand // two_thousand
+    changeList.append(change_two_thousand)
+    change_thousand = change % fifty_thousand % twenty_thousand % ten_thousand % five_thousand % two_thousand // thousand
+    changeList.append(change_thousand)
+    change_five_hundred = change % fifty_thousand % twenty_thousand % ten_thousand % five_thousand % two_thousand % thousand // five_hundred
+    changeList.append(change_five_hundred)
+    change_two_hundred = change % fifty_thousand % twenty_thousand % ten_thousand % five_thousand % two_thousand % thousand % five_hundred // two_hundred
+    changeList.append(change_two_hundred)
+    change_hundred = change % fifty_thousand % twenty_thousand % ten_thousand % five_thousand % two_thousand % thousand % five_hundred % two_hundred // hundred
+    changeList.append(change_hundred)
+    change_fifty = change % fifty_thousand % twenty_thousand % ten_thousand % five_thousand % two_thousand % thousand % five_hundred % two_hundred % hundred // fifty
+    changeList.append(change_fifty)
+    print(changeList)
