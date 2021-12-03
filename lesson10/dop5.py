@@ -2,9 +2,8 @@
 # если таковых несколько).
 # def read_last(file):
 #     file2 = open(file, mode='r', encoding='utf-8')
-#     data = file2.read()
-#     data2 = data.split()
-#     max_str = max(data2, key=len)
+#     data = file2.read().split()
+#     max_str = max(data, key=len)
 #     print(max_str)
 #     file2.close()
 #
@@ -12,7 +11,7 @@
 # read_last('articles.txt')
 
 # Nodir's version
-file = open('article.txt', mode='r', encoding='utf-8')
+file = open('articles.txt', mode='r', encoding='utf-8')
 a = file.read()
 b = a.split()
 print(b)
