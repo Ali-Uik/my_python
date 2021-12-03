@@ -122,25 +122,25 @@
 
 import re
 
-#
-#
-# def validate(line):
-#     # re.search(найди что, найди где)
-#     r1 = re.search(r'^[а-яА-ЯёЁ]+ [a-zA-Z0-9_.]+@[a-z]+.[a-z]+ [0-9]{2}$', line)
-#     return r1
-#
-#
-# with open('registrations.txt', mode='r', encoding='utf-8') as file:
-#     good = open('good.txt', mode='w', encoding='utf-8')
-#     bad = open('bad.txt', mode='w', encoding='utf-8')
-#     for line in file:
-#         if validate(line):
-#             good.write(line)
-#         else:
-#             bad.write(line)
-#     good.close()
-#     bad.close()
 
-print(re.split(r'\W+', 'Привет меня зовут Евгений'))
-str1 = 'Этот урок прошол 01.12.2021. Следующий урок 04.12.2021'
-print(re.findall(r'\d\d.\d\d.\d{4}', str1))
+
+def validate(line):
+    # re.search(найди что, найди где)
+    r1 = re.search(r'^[а-яА-ЯёЁ]+ [a-zA-Z0-9_.]+@[a-z]+.[a-z]+ [0-9]{2}$', line)
+    return r1
+
+
+with open('registrations.txt', mode='r', encoding='utf-8') as file:
+    good = open('good.txt', mode='w', encoding='utf-8')
+    bad = open('bad.txt', mode='w', encoding='utf-8')
+    for line in file:
+        if validate(line):
+            good.write(line)
+        else:
+            bad.write(line)
+    good.close()
+    bad.close()
+
+# print(re.split(r'\W+', 'Привет меня зовут Евгений'))
+# str1 = 'Этот урок прошол 01.12.2021. Следующий урок 04.12.2021'
+# print(re.findall(r'\d\d.\d\d.\d{4}', str1))
