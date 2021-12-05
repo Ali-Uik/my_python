@@ -24,8 +24,31 @@ json_data = []
 # for user in users:
 #     print(user['name'])
 
-parameters = {
+params = {
     'appid': 'd0c4c1e4babd454e692db213ba832310',
     'units': 'metric',
     'lang': 'ru'
 }
+while True:
+    city = input('Введите город: ')
+    if city == 'stop':
+        with open('json_data.json', mode='w', encoding='utf-8') as file:
+            json.dump(json_data, file, indent=4, ensure_ascii=False)
+        break
+    params['q'] = city
+    responce = requests.get('https://api.openweathermap.org/data/2.5/weather?', params=params)
+    data = responce.json()
+    # pprint(data)
+    temp = data['main']['temp']
+    wind = data['wind']['speed']
+    status = data['weather'][0]['description']
+    print(f'''В городе {city}
+температура:{temp} градусов
+Скорость ветера:{wind} м/с
+Статус:{status}''')
+    json_data.append({
+        'city': city,
+        'temp': temp,
+        'wind': wind,
+        'status': status
+    })

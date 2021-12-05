@@ -1,1 +1,20 @@
-[{"Имя": "Ali", "Фамилия": "Rustamboev", "Возраст": "4"}, {"Имя": "Izzatbek", "Фамилия": "Baltaev", "Возраст": "34"}, {"Имя": "Bonu", "Фамилия": "Rustamboeva", "Возраст": "8"}]
+[
+    {
+        "city": "Tashkent",
+        "temp": 6.97,
+        "wind": 1.03,
+        "status": "туман"
+    },
+    {
+        "city": "moscow",
+        "temp": -2.19,
+        "wind": 2.32,
+        "status": "небольшой снег"
+    },
+    {
+        "city": "london",
+        "temp": 6.11,
+        "wind": 0.45,
+        "status": "пасмурно"
+    }
+]
