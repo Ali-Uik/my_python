@@ -1,7 +1,6 @@
 # Default ignored files
 /shelf/
 /workspace.xml
-/lesson12/venv
-**/*.env
-**/*venv
+
+
 
