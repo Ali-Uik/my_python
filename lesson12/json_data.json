@@ -1,21 +1,14 @@
 [
     {
         "city": "Tashkent",
-        "temp": 9.97,
-        "wind": 2.06,
-        "status": "дымка"
+        "temp": 6.97,
+        "wind": 1.03,
+        "status": "туман"
     },
     {
-        "city": "Moscow",
-        "temp": -3.07,
-        "wind": 1.99,
-        "status": "пасмурно"
-    },
-    {
-        "city": "New york",
-        "temp": 9.29,
-        "wind": 0.45,
-        "status": "пасмурно"
+        "city": "Pitnak",
+        "temp": -2.14,
+        "wind": 3.81,
+        "status": "ясно"
     }
 ]
-
