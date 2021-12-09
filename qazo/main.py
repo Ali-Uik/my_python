@@ -10,7 +10,6 @@ with open('D:/Учебники/Proweb/work_space/qazo/users/users.txt', mode='r'
         if item == user_name + str(user_age):
             count.append(item)
 
-
 if len(count) == 1:
     file4 = open(f'D:/Учебники/Proweb/work_space/qazo/users/{user_name.lower()}{str(user_age)}.txt', mode='r',
                  encoding='utf-8')
@@ -19,7 +18,7 @@ if len(count) == 1:
     file4.close()
 elif len(count) == 0:
     n = user_age - 12
-    main_info = qazo(n)
+    main_info = qazo(n)  # def qazo() - ни ишлатамиз
     file = open(f'D:/Учебники/Proweb/work_space/qazo/users/{user_name.lower()}{str(user_age)}.txt', mode='w',
                 encoding='utf-8')
     file.write(main_info)
@@ -46,3 +45,5 @@ while True:
         break
     elif command == 'help':
         print('bobdod\npeshin\nasr\nshom\nxufton')
+    # elif command == 'ars':
+    #     asr(user_name, user_age)

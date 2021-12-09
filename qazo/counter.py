@@ -1,3 +1,6 @@
+import json
+
+
 def qazo(n):
     day = n * 365
     bomdod = 2 * day
@@ -6,5 +9,33 @@ def qazo(n):
     shom = 3 * day
     xufton = 4 * day
     vitr = 3 * day
-    return f'Umumiy qazo qilingan namoz kunlari - {day}\nBomdod-{bomdod} rakat\nPeshin-{peshin} rakat\nAsr-{asr} rakat\n' \
-           f'Shom-{shom} rakat\nXufton-{xufton} rakat\nVitr vojib-{vitr} rakat '
+    main_info = {
+        'day': day,
+        'bobdod': bomdod,
+        'peshin': peshin,
+        'ars': asr,
+        'shom': shom,
+        'xufton': xufton,
+        'vitr': vitr
+    }
+    main_json = json.dumps(main_info)
+
+    return main_json
+
+
+# print(qazo(5))
+
+# user_name = input('Ismingizni kiriting: ')
+# user_age = int(input('Yoshingizni kiriting: '))
+#
+#
+# def asr(user_name, user_age):
+#     file = open(f'D:/Учебники/Proweb/work_space/qazo/users/{user_name.lower()}{str(user_age)}.txt', mode='r',
+#                 encoding='utf-8')
+#     data = file.read().split('\n')
+#     asr_num = data[3].split(' ')[1]
+#     return data, asr_num
+#     # print(asr_num)
+#
+#
+# print(asr(user_name, user_age))
