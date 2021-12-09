@@ -1,0 +1,1 @@
+{"day": 2920, "bobdod": 5840, "peshin": 11680, "ars": 11680, "shom": 8760, "xufton": 11680, "vitr": 8760}

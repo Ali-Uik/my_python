@@ -1,4 +1,5 @@
 from counter import *
+from pprint import pprint
 
 user_name = input('Ismingizni kiriting: ')
 user_age = int(input('Yoshingizni kiriting: '))
@@ -25,7 +26,7 @@ elif len(count) == 0:
     file.close()
     file2 = open('D:/Учебники/Proweb/work_space/qazo/users/users.txt', mode='a', encoding='utf-8')
     file2.write(' ' + user_name.lower() + str(user_age) + ' ')
-    print(main_info)
+    print(main_info, type(main_info))
     file2.close()
 
 # n = user_age - 12
