@@ -1,6 +1,5 @@
 import json
 
-
 def qazo(n):
     day = n * 365
     bomdod = 2 * day
@@ -30,12 +29,14 @@ def qazo(n):
 #
 #
 # def asr(user_name, user_age):
-#     file = open(f'D:/Учебники/Proweb/work_space/qazo/users/{user_name.lower()}{str(user_age)}.txt', mode='r',
+#     file = open(f'../qazo/users/{user_name.lower()}{str(user_age)}.txt', mode='r',
 #                 encoding='utf-8')
-#     data = file.read().split('\n')
-#     asr_num = data[3].split(' ')[1]
-#     return data, asr_num
+#     data = file.read()
+#
+#     return data
 #     # print(asr_num)
 #
 #
+# print(asr(user_name, user_age))
+
 # print(asr(user_name, user_age))
