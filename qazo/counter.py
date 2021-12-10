@@ -1,5 +1,6 @@
 import json
 from pprint import pprint
+
 #
 # def qazo(n):
 #     day = n * 365
@@ -40,5 +41,5 @@ user_age = int(input('Yoshingizni kiriting: '))
 
 file = open(f'../qazo/users/{user_name.lower()}{str(user_age)}.txt', mode='r', encoding='utf-8')
 data = file.read()
-for key, value in data:
-    print(key, value)
+data2 = data.split(',')
+print(data)
