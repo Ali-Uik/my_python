@@ -1,0 +1,29 @@
+[
+    {
+        "Total Confirmed Cases": "10,016,896"
+    },
+    {
+        "Total Active Cases": "986,058"
+    },
+    {
+        "Today's Cases": "29,929"
+    },
+    {
+        "Total Recovered": "8,741,355"
+    },
+    {
+        "Total Critical": "2,300"
+    },
+    {
+        "Today's Deaths": "1,132"
+    },
+    {
+        "Total Deaths": "289,483"
+    },
+    {
+        "Cases per Million": "68,597"
+    },
+    {
+        "Deaths per Million": "1,982"
+    }
+]
