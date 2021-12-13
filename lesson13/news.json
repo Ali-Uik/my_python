@@ -1,5 +1,12 @@
 [
     {
+        "TITLE": "Taxi for Vladimir: Putin Says He Drove Cab After Soviet Fall",
+        "DESCRIPTION": "Putin said the disintegration of the Soviet Union three decades ago remains a \"tragedy\" for \"most citizens.\"",
+        "CATEGORY": "rate your driver",
+        "IMAGE LINK": "https://static.themoscowtimes.com/image/article_640/25/TASS_29558454.jpg",
+        "ARTICLE LINK": "https://www.themoscowtimes.com/2021/12/12/taxi-for-vladimir-putin-says-he-drove-cab-after-soviet-fall-a75796"
+    },
+    {
         "TITLE": "‘I Want Journalists to Die Old’: Nobel Winner Muratov’s Acceptance Speech, in Quotes",
         "DESCRIPTION": "The Novaya Gazeta editor-in-chief dedicated his award to his slain colleagues and decried growing threats to freedom and human rights.",
         "CATEGORY": "top honor",
@@ -7,18 +14,11 @@
         "ARTICLE LINK": "https://www.themoscowtimes.com/2021/12/10/i-want-journalists-to-die-old-nobel-winner-muratovs-acceptance-speech-in-quotes-a75789"
     },
     {
-        "TITLE": "Russia Wants NATO to Ditch Plans for Ukraine and Georgia Membership",
-        "DESCRIPTION": "Russia is taking aim at a 2008 resolution from the Western military alliance that says Ukraine and Georgia will become members.",
-        "CATEGORY": "2008 decision",
-        "IMAGE LINK": "https://static.themoscowtimes.com/image/article_640/a6/natoflag.jpeg",
-        "ARTICLE LINK": "https://www.themoscowtimes.com/2021/12/10/russia-wants-nato-to-ditch-plans-for-ukraine-and-georgia-membership-a75791"
-    },
-    {
-        "TITLE": "LIVE |Coronavirus in Russia: The Latest News | Dec. 12",
+        "TITLE": "LIVE |Coronavirus in Russia: The Latest News | Dec. 13",
         "DESCRIPTION": "Omicron fears. Covid passes. Vaccination push.",
         "CATEGORY": "russia's response",
         "IMAGE LINK": "https://static.themoscowtimes.com/image/article_640/c0/644732.jpg",
-        "ARTICLE LINK": "https://www.themoscowtimes.com/2021/12/12/coronavirus-in-russia-the-latest-news-dec-12-a69117"
+        "ARTICLE LINK": "https://www.themoscowtimes.com/2021/12/13/coronavirus-in-russia-the-latest-news-dec-13-a69117"
     },
     {
         "TITLE": "Coronavirus Crisis",
