@@ -24,15 +24,25 @@ def get_content(html):
     cars = []
     for item in items:
         price = item.find('span', class_='green')
+        if price:
+            price = price.get_text(strip=True)
+        else:
+            price = 'Цена не определено'
+        uah_price = item.find('span', class_='size16')
+        if uah_price:
+            uah_price = uah_price.get_text(strip=True)
+        else:
+            uah_price = 'Цена не определено'
 
-        # cars.append({
-        #     'title': item.find('div', class_='proposition_title').get_text(strip=True),
-        #     'link': HOST + item.find('a')['href'],
-        #     'usd_price': item.find('span', class_='size16').get_text(strip=True),
-        #
-        # })
-    pprint(price.get_text(strip=True))
+        cars.append({
+            'title': item.find('div', class_='proposition_title').get_text(strip=True),
+            'link': HOST + item.find('a')['href'],
+            'usd_price': price,
+            'uah_price': uah_price
 
+        })
+    pprint(cars)
+    # print(uah_price)
 
 
 def parse():
