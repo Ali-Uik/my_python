@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+from pprint import pprint
 
 URL = 'https://auto.ria.com/newauto/marka-jeep/'
 HEADERS = {
@@ -9,6 +10,7 @@ HEADERS = {
                   'YaBrowser/21.11.2.773 '
                   'Yowser/2.5 Safari/537.36',
     'accept': '*/*'}
+HOST = 'https://auto.ria.com'
 
 
 def get_html(url, params=None):
@@ -21,11 +23,16 @@ def get_content(html):
     items = soup.find_all('section', class_='proposition')
     cars = []
     for item in items:
-        cars.append({
-            'title': item.find('h3', class_='proposition_name').get_text(),
+        price = item.find('span', class_='green')
 
-        })
-    print(cars)
+        # cars.append({
+        #     'title': item.find('div', class_='proposition_title').get_text(strip=True),
+        #     'link': HOST + item.find('a')['href'],
+        #     'usd_price': item.find('span', class_='size16').get_text(strip=True),
+        #
+        # })
+    pprint(price.get_text(strip=True))
+
 
 
 def parse():
