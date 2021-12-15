@@ -11,7 +11,7 @@ soup = BeautifulSoup(response, 'html.parser')
 # print(soup)
 # find - найдет первое совпадение
 covid_section = soup.find('section', class_='covid19-ticker')
-# print(covid_section)
+print(covid_section)
 # найдет все совпадения - и вернет список
 blocks = covid_section.find_all('div', class_='block')
 # print(blocks)
@@ -29,7 +29,7 @@ for block in blocks:
                 label: digit
             }
         )
-# print(json_data)
+print(json_data)
 
-with open('covid.txt', mode='w', encoding='utf-8') as file:
-    json.dump(json_data, file, indent=4, ensure_ascii=False)
+# with open('covid.txt', mode='w', encoding='utf-8') as file:
+#     json.dump(json_data, file, indent=4, ensure_ascii=False)
