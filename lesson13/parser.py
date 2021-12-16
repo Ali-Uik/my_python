@@ -34,15 +34,20 @@ def get_content(html):
         else:
             uah_price = 'Цена не определено'
 
+        # location_text = location.get_text(strip=True)
+        location = item.find('span', class_='item region')
+        location2 = location.get_text(strip=True)
+
         cars.append({
             'title': item.find('div', class_='proposition_title').get_text(strip=True),
             'link': HOST + item.find('a')['href'],
             'usd_price': price,
-            'uah_price': uah_price
+            'uah_price': uah_price,
+            # 'location': location.get_text(strip=True)
 
         })
-    pprint(cars)
-    # print(uah_price)
+    # pprint(cars)
+    print(location2)
 
 
 def parse():
