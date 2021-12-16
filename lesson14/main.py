@@ -86,5 +86,5 @@ class Student(User):  # Класс студент наследовается о�
 
 
 superstuden = Student('Jamshid', 'Tursunov', 34, univer='Inha')
-print(superstuden.salary_day())
+print(superstuden.salary_day())  # Вызов метода вручную
 print(superstuden)
