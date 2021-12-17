@@ -11,8 +11,8 @@ class Computer:
         return f'Владелец:{self.owner}\n' \
                f'Процессор:{self.CPU}\n' \
                f'Операционная система:{self.OS}\n' \
-               f'Оперативная памят:{self.RAM}\n' \
-               f'HDD:{self.HDD}\n' \
+               f'Оперативная памят:{self.RAM} GB\n' \
+               f'HDD:{self.HDD} TB\n' \
                f'Монитор:{self.monitor}'
 
     def owner_info(self):
@@ -37,14 +37,25 @@ class Computer:
         return self.RAM <= other.RAM
 
 
-comp1 = Computer('Ali', 'Core i9', 'Lunix', '64', '1Tb', 'LG 27er')
-comp2 = Computer('Bonu', 'Core i11', 'MacOS', '128', '2Tb', 'Immer')
+comp1 = Computer('Ali', 'Core i9', 'Lunix', 64, 1, 'LG 27er')
+comp2 = Computer('Bonu', 'Core i11', 'MacOS', 128, 2, 'Immer')
+
 print(comp1)
 print(comp2)
 # print(comp2)
-print(comp1 > comp2)
-print(comp1 >= comp2)
-print(comp1 == comp2)
-print(comp1 != comp2)
-print(comp1 < comp2)
-print(comp1 <= comp2)
+if comp1 == comp2:
+    print(f'{comp1.owner}нинг компининг ОЗУси {comp2.owner}нинг компининг ОЗУсига тенг')
+elif comp1 != comp2:
+    print(f'{comp1.owner}нинг компининг ОЗУси {comp2.owner}нинг компининг ОЗУсига тенг эмас')
+elif comp1 > comp2:
+    print(f'{comp1.owner}нинг компининг ОЗУси {comp2.owner}нинг компининг ОЗУсидан катта')
+elif comp1 >= comp2:
+    print(f'{comp1.owner}нинг компининг ОЗУси {comp2.owner}нинг компининг ОЗУсидан катта ёки тенг')
+elif comp1 < comp2:
+    print(f'{comp1.owner}нинг компининг ОЗУси {comp2.owner}нинг компининг ОЗУсидан кичик')
+elif comp1 <= comp2:
+    print(f'{comp1.owner}нинг компининг ОЗУси {comp2.owner}нинг компининг ОЗУсидан кичик ёки тенг')
+
+# print(comp1 == comp2)
+# print(comp1 < comp2)
+# print(comp1 <= comp2)
