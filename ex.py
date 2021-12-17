@@ -215,79 +215,105 @@ import math
 # Свое просторечное название (loonie) она получила от изображения полярной гагары
 # (loon) на ней. Двухдолларовая монета, вышедшая девятью годами позже, была прозвана toonie, как комбинация из слов два
 # (two) и loonie.
-hundred_thousand = 100000
-fifty_thousand = 50000
-twenty_thousand = 20000
-ten_thousand = 10000
-five_thousand = 5000
-two_thousand = 2000
-thousand = 1000
-five_hundred = 500
-two_hundred = 200
-hundred = 100
-fifty = 50
-bill = ['50 000 so\'mlik: ', '20 000 so\'mlik: ', '10 000 so\'mlik: ', '5 000 so\'mlik: ', '2 000 so\'mlik: ',
-        '1 000 so\'mlik: ', '500 so\'mlik: ', '200 so\'mlik: ', '100 so\'mlik: ', '50 so\'mlik: ']
-changeList = []
-price = float(input('Umumiy summani kiriting: '))
-cash = float(input('Mijoz to\'lov qilgan summasini kiriting: '))
+# hundred_thousand = 100000
+# fifty_thousand = 50000
+# twenty_thousand = 20000
+# ten_thousand = 10000
+# five_thousand = 5000
+# two_thousand = 2000
+# thousand = 1000
+# five_hundred = 500
+# two_hundred = 200
+# hundred = 100
+# fifty = 50
+# bill = ['50 000 so\'mlik: ', '20 000 so\'mlik: ', '10 000 so\'mlik: ', '5 000 so\'mlik: ', '2 000 so\'mlik: ',
+#         '1 000 so\'mlik: ', '500 so\'mlik: ', '200 so\'mlik: ', '100 so\'mlik: ', '50 so\'mlik: ']
+# changeList = []
+# price = float(input('Umumiy summani kiriting: '))
+# cash = float(input('Mijoz to\'lov qilgan summasini kiriting: '))
+#
+# if price >= 100000:
+#     price = price - price * 0.01
+#     change = cash - price
+#     print(f'1% skidkadan keyingi summe: {price}\nQaytim: {change}')
+#     change_fifty_thousand = change // fifty_thousand
+#     changeList.append(change_fifty_thousand)
+#     change_twenty_thousand = change % fifty_thousand // twenty_thousand
+#     changeList.append(change_twenty_thousand)
+#     change_ten_thousand = change % fifty_thousand % twenty_thousand // ten_thousand
+#     changeList.append(change_ten_thousand)
+#     change_five_thousand = change % fifty_thousand % twenty_thousand % ten_thousand // five_thousand
+#     changeList.append(change_five_thousand)
+#     change_two_thousand = change % fifty_thousand % twenty_thousand % ten_thousand % five_thousand // two_thousand
+#     changeList.append(change_two_thousand)
+#     change_thousand = change % fifty_thousand % twenty_thousand % ten_thousand % five_thousand % two_thousand // thousand
+#     changeList.append(change_thousand)
+#     change_five_hundred = change % fifty_thousand % twenty_thousand % ten_thousand % five_thousand % two_thousand % thousand // five_hundred
+#     changeList.append(change_five_hundred)
+#     change_two_hundred = change % fifty_thousand % twenty_thousand % ten_thousand % five_thousand % two_thousand % thousand % five_hundred // two_hundred
+#     changeList.append(change_two_hundred)
+#     change_hundred = change % fifty_thousand % twenty_thousand % ten_thousand % five_thousand % two_thousand % thousand % five_hundred % two_hundred // hundred
+#     changeList.append(change_hundred)
+#     change_fifty = change % fifty_thousand % twenty_thousand % ten_thousand % five_thousand % two_thousand % thousand % five_hundred % two_hundred % hundred // fifty
+#     changeList.append(change_fifty)
+#     print(changeList)
+#
+#
+# else:
+#     change = cash - price
+#     change_fifty_thousand = change // fifty_thousand
+#     changeList.append(change_fifty_thousand)
+#     change_twenty_thousand = change % fifty_thousand // twenty_thousand
+#     changeList.append(change_twenty_thousand)
+#     change_ten_thousand = change % fifty_thousand % twenty_thousand // ten_thousand
+#     changeList.append(change_ten_thousand)
+#     change_five_thousand = change % fifty_thousand % twenty_thousand % ten_thousand // five_thousand
+#     changeList.append(change_five_thousand)
+#     change_two_thousand = change % fifty_thousand % twenty_thousand % ten_thousand % five_thousand // two_thousand
+#     changeList.append(change_two_thousand)
+#     change_thousand = change % fifty_thousand % twenty_thousand % ten_thousand % five_thousand % two_thousand // thousand
+#     changeList.append(change_thousand)
+#     change_five_hundred = change % fifty_thousand % twenty_thousand % ten_thousand % five_thousand % two_thousand % thousand // five_hundred
+#     changeList.append(change_five_hundred)
+#     change_two_hundred = change % fifty_thousand % twenty_thousand % ten_thousand % five_thousand % two_thousand % thousand % five_hundred // two_hundred
+#     changeList.append(change_two_hundred)
+#     change_hundred = change % fifty_thousand % twenty_thousand % ten_thousand % five_thousand % two_thousand % thousand % five_hundred % two_hundred // hundred
+#     changeList.append(change_hundred)
+#     change_fifty = change % fifty_thousand % twenty_thousand % ten_thousand % five_thousand % two_thousand % thousand % five_hundred % two_hundred % hundred // fifty
+#     changeList.append(change_fifty)
+#     print(changeList)
+#
+# length = len(changeList)
+# for item in range(length):
+#     changeDict = {
+#         bill[item]: changeList[item]
+#     }
+#     print(changeDict)
 
-if price >= 100000:
-    price = price - price * 0.01
-    change = cash - price
-    print(f'1% skidkadan keyingi summe: {price}\nQaytim: {change}')
-    change_fifty_thousand = change // fifty_thousand
-    changeList.append(change_fifty_thousand)
-    change_twenty_thousand = change % fifty_thousand // twenty_thousand
-    changeList.append(change_twenty_thousand)
-    change_ten_thousand = change % fifty_thousand % twenty_thousand // ten_thousand
-    changeList.append(change_ten_thousand)
-    change_five_thousand = change % fifty_thousand % twenty_thousand % ten_thousand // five_thousand
-    changeList.append(change_five_thousand)
-    change_two_thousand = change % fifty_thousand % twenty_thousand % ten_thousand % five_thousand // two_thousand
-    changeList.append(change_two_thousand)
-    change_thousand = change % fifty_thousand % twenty_thousand % ten_thousand % five_thousand % two_thousand // thousand
-    changeList.append(change_thousand)
-    change_five_hundred = change % fifty_thousand % twenty_thousand % ten_thousand % five_thousand % two_thousand % thousand // five_hundred
-    changeList.append(change_five_hundred)
-    change_two_hundred = change % fifty_thousand % twenty_thousand % ten_thousand % five_thousand % two_thousand % thousand % five_hundred // two_hundred
-    changeList.append(change_two_hundred)
-    change_hundred = change % fifty_thousand % twenty_thousand % ten_thousand % five_thousand % two_thousand % thousand % five_hundred % two_hundred // hundred
-    changeList.append(change_hundred)
-    change_fifty = change % fifty_thousand % twenty_thousand % ten_thousand % five_thousand % two_thousand % thousand % five_hundred % two_hundred % hundred // fifty
-    changeList.append(change_fifty)
-    print(changeList)
+
+# ______________________________________________________________________________________________________________________
+
+# Упражнение 14. Рост
+# (Решено. 16 строк) Многие люди на планете привыкли рассчитывать рост человека в футах и дюймах, даже если в их стране
+# принята метрическая система. Напишите программу, которая будет запрашивать у пользователя количество футов, а затем
+# дюймов в его росте. После этого она должна пересчитать рост в сантиметры и вывести его на экран.
+user = int(input('Введите рост в дюймах:'))
 
 
-else:
-    change = cash - price
-    change_fifty_thousand = change // fifty_thousand
-    changeList.append(change_fifty_thousand)
-    change_twenty_thousand = change % fifty_thousand // twenty_thousand
-    changeList.append(change_twenty_thousand)
-    change_ten_thousand = change % fifty_thousand % twenty_thousand // ten_thousand
-    changeList.append(change_ten_thousand)
-    change_five_thousand = change % fifty_thousand % twenty_thousand % ten_thousand // five_thousand
-    changeList.append(change_five_thousand)
-    change_two_thousand = change % fifty_thousand % twenty_thousand % ten_thousand % five_thousand // two_thousand
-    changeList.append(change_two_thousand)
-    change_thousand = change % fifty_thousand % twenty_thousand % ten_thousand % five_thousand % two_thousand // thousand
-    changeList.append(change_thousand)
-    change_five_hundred = change % fifty_thousand % twenty_thousand % ten_thousand % five_thousand % two_thousand % thousand // five_hundred
-    changeList.append(change_five_hundred)
-    change_two_hundred = change % fifty_thousand % twenty_thousand % ten_thousand % five_thousand % two_thousand % thousand % five_hundred // two_hundred
-    changeList.append(change_two_hundred)
-    change_hundred = change % fifty_thousand % twenty_thousand % ten_thousand % five_thousand % two_thousand % thousand % five_hundred % two_hundred // hundred
-    changeList.append(change_hundred)
-    change_fifty = change % fifty_thousand % twenty_thousand % ten_thousand % five_thousand % two_thousand % thousand % five_hundred % two_hundred % hundred // fifty
-    changeList.append(change_fifty)
-    print(changeList)
+class User:
+    def __init__(self, height):
+        self.height = height
 
-length = len(changeList)
-for item in range(length):
-    changeDict = {
-        bill[item]: changeList[item]
-    }
-    print(changeDict)
+    def inch(self):
+        return self.height
+
+    def inch_to_sm(self):
+        return self.height * 2.54
+
+    def inch_to_fut(self):
+        return self.height * 0.0833333
 
 
+print(f'Ваш рост в дюймах: {User(user).inch()}')
+print(f'Ваш рост в сантиметрах: {User(user).inch_to_sm()}')
+print(f'Ваш рост в футах: {User(user).inch_to_fut()}')
