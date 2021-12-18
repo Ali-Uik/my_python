@@ -297,23 +297,25 @@ import math
 # (Решено. 16 строк) Многие люди на планете привыкли рассчитывать рост человека в футах и дюймах, даже если в их стране
 # принята метрическая система. Напишите программу, которая будет запрашивать у пользователя количество футов, а затем
 # дюймов в его росте. После этого она должна пересчитать рост в сантиметры и вывести его на экран.
-user = int(input('Введите рост в дюймах:'))
+# user = int(input('Введите рост в дюймах:'))
+#
+#
+# class User:
+#     def __init__(self, height):
+#         self.height = height
+#
+#     def inch(self):
+#         return self.height
+#
+#     def inch_to_sm(self):
+#         return self.height * 2.54
+#
+#     def inch_to_fut(self):
+#         return self.height * 0.0833333
+#
+#
+# print(f'Ваш рост в дюймах: {User(user).inch()}')
+# print(f'Ваш рост в сантиметрах: {User(user).inch_to_sm()}')
+# print(f'Ваш рост в футах: {User(user).inch_to_fut()}')
 
-
-class User:
-    def __init__(self, height):
-        self.height = height
-
-    def inch(self):
-        return self.height
-
-    def inch_to_sm(self):
-        return self.height * 2.54
-
-    def inch_to_fut(self):
-        return self.height * 0.0833333
-
-
-print(f'Ваш рост в дюймах: {User(user).inch()}')
-print(f'Ваш рост в сантиметрах: {User(user).inch_to_sm()}')
-print(f'Ваш рост в футах: {User(user).inch_to_fut()}')
+# ______________________________________________________________________________________________________________________

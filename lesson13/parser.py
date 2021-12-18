@@ -36,18 +36,18 @@ def get_content(html):
 
         # location_text = location.get_text(strip=True)
         location = item.find('span', class_='item region')
-        location2 = location.get_text(strip=True)
+        # location2 = location.get_text(strip=True)
 
         cars.append({
             'title': item.find('div', class_='proposition_title').get_text(strip=True),
             'link': HOST + item.find('a')['href'],
             'usd_price': price,
             'uah_price': uah_price,
-            # 'location': location.get_text(strip=True)
+            'location': location
 
         })
-    # pprint(cars)
-    print(location2)
+        print(location)
+    pprint(cars)
 
 
 def parse():
