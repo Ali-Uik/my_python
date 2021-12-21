@@ -33,14 +33,13 @@ class CategoryParser(BaseParser):
             print(product_name)
 
 
-
-
-
 def start_category_parsing():
     parser = CategoryParser()
     print('Парсер начал работу')
+    # print(parser)
     start = time.time()
     html = parser.get_html('https://texnomart.uz/mobile/katalog/telefony')
+    # print(html)
     parser.category_parser(html)
     finish = time.time()
     work_time = round(finish - start, 2)
