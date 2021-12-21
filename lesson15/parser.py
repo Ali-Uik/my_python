@@ -5,10 +5,10 @@ from configs import *
 from base_parser import BaseParser
 
 
-class CategoryParser(BaseParser):
+class CategoryParser(BaseParser):  # 5
     def __init__(self):
-        super(CategoryParser, self).__init__()
-        self.DATA = {}
+        super(CategoryParser, self).__init__()  # 6 Запуск конструктора родителя
+        self.DATA = {}  # 7
 
     def category_parser(self, html):
         """Парсим все блоки из страницы категорий"""
@@ -33,17 +33,17 @@ class CategoryParser(BaseParser):
             print(product_name)
 
 
-def start_category_parsing():
-    parser = CategoryParser()
-    print('Парсер начал работу')
+def start_category_parsing():  # 8
+    parser = CategoryParser()  # 9
+    print('Парсер начал работу')  # 10
     # print(parser)
-    start = time.time()
+    start = time.time()  # 11
     html = parser.get_html('https://texnomart.uz/mobile/katalog/telefony')
     # print(html)
     parser.category_parser(html)
-    finish = time.time()
-    work_time = round(finish - start, 2)
-    print(f'Парсер отработал за {work_time} секунд')
+    finish = time.time()  # 12
+    work_time = round(finish - start, 2)  # 13
+    print(f'Парсер отработал за {work_time} секунд')  # 14
 
 
 start_category_parsing()
