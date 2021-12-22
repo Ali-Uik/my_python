@@ -39,7 +39,6 @@ def start_category_parsing():  # 8
     # print(parser)
     start = time.time()  # 11
     html = parser.get_html('https://texnomart.uz/mobile/katalog/telefony')
-    # print(html)
     parser.category_parser(html)
     finish = time.time()  # 12
     work_time = round(finish - start, 2)  # 13
