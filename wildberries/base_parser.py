@@ -11,6 +11,3 @@ class BaseParser:
     def get_html(self, url):
         response = requests.get(url)
         return response.text
-
-
-
