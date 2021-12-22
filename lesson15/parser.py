@@ -33,9 +33,6 @@ class CategoryParser(BaseParser):
             print(product_name)
 
 
-
-
-
 def start_category_parsing():
     parser = CategoryParser()
     print('Парсер начал работу')
