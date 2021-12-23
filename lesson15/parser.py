@@ -3,9 +3,10 @@ from bs4 import BeautifulSoup
 import time
 from configs import *
 from base_parser import BaseParser
+from mixin import ProductDetailParserMixin
 
 
-class CategoryParser(BaseParser):  # 5
+class CategoryParser(BaseParser, ProductDetailParserMixin):    # 5
     def __init__(self):
         super(CategoryParser, self).__init__()  # 6 Запуск конструктора родителя
         self.DATA = {}  # 7
@@ -31,6 +32,14 @@ class CategoryParser(BaseParser):  # 5
         for product in products[:MAX_QUANTITY]:
             product_name = product.find('a', class_='product-name').get_text(strip=True)
             print(product_name)
+            product_price = product.find('div', class_='product-price').get_text(strip=True)
+            print(product_price)
+            product_link = self.HOST + product.find('a', class_='product-name').get('href')
+            print(product_link)
+
+            product_page = self.get_html(product_link)
+            characteristics = self.get_detail_info(product_page)
+
 
 
 def start_category_parsing():  # 8
