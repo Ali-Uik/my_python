@@ -24,7 +24,7 @@ class BaseParser:  # 1
             json.dump(data, file, ensure_ascii=False, indent=4)
 
     @staticmethod  # 4
-    def save_data_to_htmk(file_path, data):
+    def save_data_to_html(file_path, data):
         """Сохранение данных в html"""
         with open(f'{file_path}.html', mode='w', encoding='utf-8') as file:
             file.write(str(data))
