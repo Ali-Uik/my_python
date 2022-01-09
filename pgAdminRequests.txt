@@ -1,0 +1,40 @@
+SELECT product_name, unit_price FROM products
+WHERE unit_price > (SELECT AVG(unit_price) FROM products)
+ORDER BY unit_price;
+
+SELECT contact_name, freight FROM orders
+JOIN customers USING(customer_id)
+WHERE freight BETWEEN 50 AND 100;
+
+SELECT contact_name FROM customers
+WHERE EXISTS (
+	SELECT customer_id FROM orders
+	WHERE customer_id = customers.customer_id
+	AND freight BETWEEN 50 AND 100
+);
+
+--Группировка
+SELECT SUM(units_in_stock) AS total_units, category_name FROM products
+JOIN categories USING(category_id)
+GROUP BY category_name;
+
+-- Условные опреаторы
+SELECT product_name, unit_price,
+CASE
+	WHEN unit_price >= 80 THEN 'очен дорого'
+	WHEN unit_price >= 20 AND unit_price < 80 THEN 'нормально'
+	WHEN unit_price >= 1 AND unit_price < 20 THEN 'дешево'
+	ELSE 'цена не указана'
+END AS price_description
+FROM products ORDER BY unit_price;
+
+SELECT * FROM customers;
+
+SELECT company_name, address, COALESCE(region,'Регион не указан') AS region FROM customers;
+--COALESCE(СЛИЯТЬСЯ) - ищет NULL и заменяет их на то что указали
+
+
+SELECT * FROM suppliers;
+SELECT supplier_id, company_name, COALESCE(NULLIF(country,'UK'),'Великобритания') FROM suppliers;
+
+
