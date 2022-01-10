@@ -13,7 +13,32 @@ INSERT INTO users(first_name,last_name) VALUES
 
 SELECT country FROM customers; -- Все с повторением
 SELECT DISTINCT country FROM customers; -- Все без повторением
+-- Объеденение - без повторения
+SELECT country FROM customers
+UNION
+SELECT country FROM employees ORDER BY country;
+-- Объеденение - с повторениями
+SELECT country FROM customers
+UNION ALL
+SELECT country FROM employees ORDER BY country;
+-- Пересечение
+SELECT country FROM customers
+INTERSECT
+SELECT country FROM employees ORDER BY country;
 
+-- Исключение
+SELECT country FROM customers
+EXCEPT
+SELECT country FROM employees ORDER BY country;
+-- Join килишнинг биринчи варианти
+SELECT product_name, category_name FROM products
+JOIN categories ON products.category_id=categories.category_id;
+-- Join килишнинг иккинчи варианти
+SELECT product_name, category_name FROM products
+JOIN categories USING (category_id);
+--products ва categories таблицаларидаги маълумотларни category_id буйича бирлаштиради, яъни category_idлари тенг булган каторларни бирлаштиради
+
+--вывести все продукты у которых цена больше чем средняя
 SELECT product_name, unit_price FROM products
 WHERE unit_price > (SELECT AVG(unit_price) FROM products)
 ORDER BY unit_price;

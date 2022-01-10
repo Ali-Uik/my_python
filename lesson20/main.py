@@ -18,7 +18,7 @@ CASE
 	WHEN unit_price >= 1 AND unit_price < 20 THEN 'дешево'
 	ELSE 'цена не указана'
 END AS price_description
-FROM products ORDER BY unit_price;    
+FROM products ORDER BY unit_price;
     '''
 )
 
@@ -28,7 +28,7 @@ pprint(products)
 cursor.execute(
     '''
     SELECT AVG(unit_price) FROM products;
-    
+
     '''
 )
 # avg = cursor.fetchone()
@@ -42,6 +42,8 @@ cursor.execute(
     '''
     DROP TABLE IF EXISTS users;
     CREATE TABLE IF NOT EXISTS users
-        id 
+        id
     '''
 )
+
+
