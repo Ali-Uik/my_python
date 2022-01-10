@@ -35,3 +35,13 @@ cursor.execute(
 avg1 = cursor.fetchone()[0]
 # print(avg)
 print(avg1)
+
+# Создат две таблицы для users и posts
+
+cursor.execute(
+    '''
+    DROP TABLE IF EXISTS users;
+    CREATE TABLE IF NOT EXISTS users
+        id 
+    '''
+)
