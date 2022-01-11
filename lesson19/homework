@@ -25,3 +25,10 @@ SELECT * FROM products;
 SELECT * FROM categories;
 SELECT product_name, quantity_per_unit, supplier_id, category_id FROM products
 WHERE category_id=8 ;
+
+________________________________________________________________________________________________________________________
+5. Вывести названия продуктов, которых заказано ровно 10 единиц. Результат должен быть без дубликатов и отсортирован в
+алфавитном порядке. (всего 60 записей).
+SELECT product_name, units_on_order FROM products
+WHERE units_on_order = 10
+ORDER BY product_name;
