@@ -45,5 +45,3 @@ cursor.execute(
         id
     '''
 )
-
-
