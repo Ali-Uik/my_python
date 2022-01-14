@@ -20,7 +20,8 @@ def command_start(message):
             pass
         # TODO сделать функцию регистрации
     elif message.text == '/help':
-        bot.send_message(chat_id, f'''Данный бот был создан при поддержке <b>PROWEB</b>.При создании бота ни один студент не пострадал.Если у вас есть вопросы или что-то сломалось пишите сюда: @aliuiktraslatorbot''')
+        bot.send_message(chat_id,
+                         f'''Данный бот был создан при поддержке <b>PROWEB</b>.При создании бота ни один студент не пострадал. Если у вас есть вопросы или что-то сломалось пишите сюда: @aliuiktraslatorbot''')
     elif message.text == '/history':
         bot.send_message(chat_id, 'Ваша история:')
 
