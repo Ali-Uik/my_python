@@ -15,14 +15,15 @@ def command_start(message):
         cursor.execute('''SELECT * FROM users WHERE telegram_id = ? ''', (chat_id,))
         user = cursor.fetchone()
         if user:
-            bot.send_message(chat_id, 'Что желаета сделат?')
+            bot.send_message(chat_id, 'Что желаета сделат?', reply_markup=choose_command())
         else:
             bot.register_next_step_handler(msg, register_user)
             pass
         # TODO сделать функцию регистрации
     elif message.text == '/help':
         bot.send_message(chat_id,
-                         f'''Данный бот был создан при поддержке <b>PROWEB</b>.При создании бота ни один студент не пострадал. Если у вас есть вопросы или что-то сломалось пишите сюда: @aliuiktraslatorbot''')
+                         f'''Данный бот был создан при поддержке <b>PROWEB</b>.При создании бота ни один студент не 
+                         пострадал. Если у вас есть вопросы или что-то сломалось пишите сюда: @aliuiktraslatorbot''')
     elif message.text == '/history':
         bot.send_message(chat_id, 'Ваша история:')
 
@@ -39,10 +40,22 @@ def register_user(message):
             (?,?,?,?);
             ''', (chat_id, first_name, username, phone))
         db.commit()
-        msg = bot.send_message(chat_id, 'Что желаета сделать?')
+        msg = bot.send_message(chat_id, 'Что желаета сделать?', reply_markup=choose_command())
     except:
         msg = bot.send_message(chat_id, 'Нажминте на кнопку', reply_markup=generate_phone_number())
         bot.register_next_step_handler(msg, register_user)
+
+
+@bot.message_handler(regexp=r'Перевод \U0001F913')
+def translate_start(message):
+    chat_id = message.chat.id
+    word = bot.send_message(chat_id, 'Введите слово или текст, котороые хотите перевести')
+
+
+@bot.message_handler(regexp=r'Определение \U0001F9D0')
+def definition_start(message):
+    chat_id = message.chat.id
+    word = bot.send_message(chat_id, 'Введите слово, определение которого хотите знать')
 
 
 bot.polling(none_stop=True)
