@@ -6,3 +6,4 @@ def generate_phone_number():
     btn = KeyboardButton(text='Отправьте свой контакт!', request_contact=True)
     markup.add(btn)
     return markup
+
