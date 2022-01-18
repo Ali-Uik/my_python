@@ -4,6 +4,7 @@ from telebot import TeleBot
 from translate import Translator
 from keyboards import *
 
+
 bot = TeleBot(TOKEN, parse_mode='HTML')
 
 
@@ -61,15 +62,15 @@ def definition_start(message):
 
 
 def translation(message):
-    chat_id = message.chat.id
-    translator = Translator(from_lang='ru', to_lang='en')
-    word = message.text
+    chat_id = message.chat.id    # chat_id = message.chat.id
+    translator = Translator(from_lang='ru', to_lang='en')  # translator = Translator(from_lang='ru', to_lang='en')
+    word = message.text  # word = message.text
     print(word)
     english_word = translator.translate(word)
-    print(english_word)
+    # english_word = translator.translate(word)  # english_word = translator.translate(word)
     cursor.execute(
         '''
-        SELECT user_id FROM users WHERE telegram_id = ?;
+        SELECT user_id FROM users WHERE telegram_id = ?; 
         ''', (chat_id,))
     user_id = cursor.fetchone()[0]
     cursor.execute(
