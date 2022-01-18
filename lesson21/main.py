@@ -4,7 +4,6 @@ from telebot import TeleBot
 from translate import Translator
 from keyboards import *
 
-
 bot = TeleBot(TOKEN, parse_mode='HTML')
 
 
@@ -62,7 +61,7 @@ def definition_start(message):
 
 
 def translation(message):
-    chat_id = message.chat.id    # chat_id = message.chat.id
+    chat_id = message.chat.id  # chat_id = message.chat.id
     translator = Translator(from_lang='ru', to_lang='en')  # translator = Translator(from_lang='ru', to_lang='en')
     word = message.text  # word = message.text
     print(word)
