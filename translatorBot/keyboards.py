@@ -9,3 +9,11 @@ def generate_phone_number():  # фойдаланувчининг тел номе
     # request_contact=True - шу команда тел номерни жунатади
     markup.add(btn)
     return markup
+
+
+def choose_command():
+    markup = ReplyKeyboardMarkup(resize_keyboard=True)
+    translate = KeyboardButton(text='Перевод \U0001F504')
+    definition = KeyboardButton(text='Определение \U0001F4DD')
+    markup.add(translate, definition)
+    return markup

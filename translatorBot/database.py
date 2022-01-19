@@ -2,7 +2,7 @@ from configs import *
 cursor.executescript(
     # executescript - это нестандартный удобный метод для одновременного выполнения нескольких операторов SQL.
     '''
-    DROP TABLE IS EXISTS users;
+    DROP TABLE IF EXISTS users;
     CREATE TABLE IF NOT EXISTS users(
         user_id INTEGER PRIMARY KEY AUTOINCREMENT,
         telegram_id INTEGER,
