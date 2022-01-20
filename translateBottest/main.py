@@ -75,8 +75,9 @@ def translation(message):
     user_id = cursor.fetchone()[0]
     cursor.execute('''
     INSERT INTO history_translation(user_id, user_text, translate_text) VALUES
-    (?,?,?)
+    (?,?,?);
     ''', (user_id, word, english_word))
+    db.commit()
     bot.send_message(chat_id, english_word)
     msg = bot.send_message(chat_id, 'Что желлаете сделать?', reply_markup=choose_command())
 
