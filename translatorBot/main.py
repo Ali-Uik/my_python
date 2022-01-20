@@ -188,8 +188,11 @@ def translation(message):
 def wikipedia_answer(message):
     word = message.text
     chat_id = message.chat.id
-    if word == 'Перевод \U0001F504':
-        translate_start(message)
+    if word in ['Перевод \U0001F504', '/start', '/help', '/history']:
+        if word == 'Перевод \U0001F504':
+            translate_start(message)
+        else:
+            command_start(message)
     else:
         full_url = f'https://ru.wikipedia.org/wiki/{word}'
         print(full_url)
