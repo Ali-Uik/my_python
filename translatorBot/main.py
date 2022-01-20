@@ -1,8 +1,10 @@
 from configs import *
 from telebot import TeleBot
-# from googletrans import Translator
-from translate import Translator
+from googletrans import Translator  # google
+# from translate import Translator  # microsoft
 from keyboards import *
+import requests
+from bs4 import BeautifulSoup
 
 bot = TeleBot(TOKEN,
               parse_mode='HTML')  # ботни регистрация килдик, parse_mode='HTML' - html тегларни ишлатишга рухсат беради.
@@ -112,7 +114,7 @@ def command_start(message):  # message бу - ботдан фойдаланув�
         msg = bot.send_message(chat_id,  # ботдан фойдаланувчига жунатиладиган маълумотлар
                                f'''Привет <b>{message.from_user.first_name}</b>. Я бот перевода и определения слов и текста.''',
                                reply_markup=generate_phone_number())
-        cursor.execute('''SELECT * FROM users WHERE telegram_id = ?''', (chat_id,))
+        cursor.execute('''SELECT * FROM users WHERE telegram_id = ?;''', (chat_id,))
         user = cursor.fetchone()
         if user:
             bot.send_message(chat_id, 'Что желаете сделать?', reply_markup=choose_command())
@@ -144,46 +146,67 @@ def register_user(message):
 
 
 @bot.message_handler(regexp=r'Перевод \U0001F504')  # regexp
-# @bot.message_handler(regexp=r'Перевод \U0001F913')
 def translate_start(message):
     chat_id = message.chat.id
-    #   chat_id = message.chat.id
     word = bot.send_message(chat_id, 'Введите слово или текст, которые хотите перевести.')
-    #   word = bot.send_message(chat_id, 'Введите слово или текст, которые хотите перевести')
     bot.register_next_step_handler(word, translation)
 
 
-#   bot.register_next_step_handler(word, translation)
-
-
 @bot.message_handler(regexp=r'Определение \U0001F4DD')
-# @bot.message_handler(regexp=r'Определение \U0001F9D0')
 def definition_start(message):
-    # def definition_start(message):
     chat_id = message.chat.id
-    #   chat_id = message.chat.id
     word = bot.send_message(chat_id, 'Введите слово, определение которого хотите знать.')
-
-
-#   word = bot.send_message(chat_id, 'Введите слово, определение которого хотите знать')
+    bot.register_next_step_handler(word, wikipedia_answer)
 
 
 def translation(message):
     chat_id = message.chat.id
-    translator = Translator(from_lang='ru', to_lang='en')
     word = message.text
     print(word)
-    english_word = translator.translate(word)
-    print(english_word)
-    cursor.execute('''
-    SELECT user_id FROM users WHERE telegram_id = ?;
-    ''', (chat_id,))
-    user_id = cursor.fetchone()[0]
-    cursor.execute('''
-    INSERT INTO history_translation (user_id,user_text,translate_text) VALUES (?,?,?);
-    ''', (user_id, word, english_word))
-    bot.send_message(chat_id, english_word)
-    msg = bot.send_message(chat_id, 'Что желаете сделать?', reply_markup=choose_command())
+    if word == 'Определение \U0001F4DD':
+        definition_start(message)
+    else:
+        # translator = Translator(from_lang='ru', to_lang='en')
+        translator = Translator()
+        english_word = translator.translate(text=word, dest='en')
+        # english_word = translator.translate(word)
+        english_word_text = english_word.text
+        print(english_word_text)
+        cursor.execute('''
+        SELECT user_id FROM users WHERE telegram_id = ?;
+        ''', (chat_id,))
+        user_id = cursor.fetchone()[0]
+        cursor.execute('''
+        INSERT INTO history_translation (user_id,user_text,translate_text) VALUES (?,?,?);
+        ''', (user_id, word, english_word_text))
+        db.commit()
+        bot.send_message(chat_id, english_word_text)
+        translate_start(message)
+        # msg = bot.send_message(chat_id, 'Что желаете сделать?', reply_markup=choose_command())
+
+
+def wikipedia_answer(message):
+    word = message.text
+    chat_id = message.chat.id
+    if word == 'Перевод \U0001F504':
+        translate_start(message)
+    else:
+        full_url = f'https://ru.wikipedia.org/wiki/{word}'
+        print(full_url)
+        html = requests.get(full_url).text
+        soup = BeautifulSoup(html, 'html.parser')
+        definition = soup.find('p').get_text(strip=True)
+        print(definition)
+        cursor.execute('''
+                SELECT user_id FROM users WHERE telegram_id = ?;
+                ''', (chat_id,))
+        user_id = cursor.fetchone()[0]
+        cursor.execute('''
+                INSERT INTO history_definition (user_id,user_text,definition_text) VALUES (?,?,?);
+                ''', (user_id, word, definition))
+        db.commit()
+        bot.send_message(chat_id, definition)
+        definition_start(message)
 
 
 bot.polling(none_stop=True)  # ботнинг тухтамасдан ишлаши учун
