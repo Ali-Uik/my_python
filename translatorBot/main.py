@@ -144,40 +144,36 @@ def register_user(message):
 
 
 @bot.message_handler(regexp=r'Перевод \U0001F504')  # regexp
-# @bot.message_handler(regexp=r'Перевод \U0001F913')
+#@bot.message_handler(regexp=r'Перевод \U0001F913')
 def translate_start(message):
     chat_id = message.chat.id
-    #   chat_id = message.chat.id
+#   chat_id = message.chat.id
     word = bot.send_message(chat_id, 'Введите слово или текст, которые хотите перевести.')
-    #   word = bot.send_message(chat_id, 'Введите слово или текст, которые хотите перевести')
+#   word = bot.send_message(chat_id, 'Введите слово или текст, которые хотите перевести')
     bot.register_next_step_handler(word, translation)
-
-
 #   bot.register_next_step_handler(word, translation)
 
 
 @bot.message_handler(regexp=r'Определение \U0001F4DD')
-# @bot.message_handler(regexp=r'Определение \U0001F9D0')
+#@bot.message_handler(regexp=r'Определение \U0001F9D0')
 def definition_start(message):
-    # def definition_start(message):
+#def definition_start(message):
     chat_id = message.chat.id
-    #   chat_id = message.chat.id
+#   chat_id = message.chat.id
     word = bot.send_message(chat_id, 'Введите слово, определение которого хотите знать.')
-
-
 #   word = bot.send_message(chat_id, 'Введите слово, определение которого хотите знать')
 
 
 def translation(message):
     chat_id = message.chat.id
-    #   chat_id = message.chat.id
+#   chat_id = message.chat.id
     translator = Translator(from_lang='ru', to_lang='en')
-    #   translator = Translator(from_lang='ru', to_lang='en')
+#   translator = Translator(from_lang='ru', to_lang='en')
     word = message.text
-    #   word = message.text
+#   word = message.text
     print(word)
     english_word = translator.translate(word)
-    #   english_word = translator.translate(word)
+#   english_word = translator.translate(word)
     print(english_word)
     cursor.execute('''
     SELECT user_id FROM users WHEN telegram_id = ?
@@ -187,10 +183,8 @@ def translation(message):
     INSERT INTO history_translation (user_id,user_text,translate_text) VALUES (?,?,?)
     ''', (user_id, word, english_word))
     bot.send_message(chat_id, english_word)
-    #   bot.send_message(chat_id, english_word)
+#   bot.send_message(chat_id, english_word)
     msg = bot.send_message(chat_id, 'Что желаете сделать?', reply_markup=choose_command())
-
-
 #   msg = bot.send_message(chat_id, 'Что желлаете сделать?', reply_markup=choose_command())
 
 
