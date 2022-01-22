@@ -3,6 +3,7 @@ from telebot import TeleBot
 # from googletrans import Translator
 from translate import Translator
 from keyboard import *
+from bs4 import BeautifulSoup
 
 bot = TeleBot(TOKEN, parse_mode='HTML')
 
@@ -12,7 +13,7 @@ def command_start(message):
     chat_id = message.chat.id
     if message.text == '/start':
         msg = bot.send_message(chat_id, f"""Привет <b>{message.from_user.first_name}</b>.
-Я бот перевода и определения слов и текстов!""", reply_markup=generate_phone_number())
+        Я бот перевода и определения слов и текстов!""", reply_markup=generate_phone_number())
         cursor.execute("""SELECT * FROM users WHERE telegram_id= ?;""", (chat_id,))  # ; колиб кетган экан
         user = cursor.fetchone()
         if user:
@@ -21,9 +22,9 @@ def command_start(message):
             bot.register_next_step_handler(msg, register_user)
     elif message.text == '/help':
         bot.send_message(chat_id, f"""Данный бот был создан при поддержке <b>PROWEB</b>
-В процессе работы ни один студент не пострадал
-Если у вас есть вопросы или что то сломалось
-Пишите сюда: @MayDay_Excel""")
+        В процессе работы ни один студент не пострадал
+        Если у вас есть вопросы или что то сломалось
+        Пишите сюда: @MayDay_Excel""")
     elif message.text == '/history':
         bot.send_message(chat_id, 'Ваша история: ')
 
@@ -35,12 +36,11 @@ def register_user(message):
         username = message.from_user.username
         phone = message.contact.phone_number
         cursor.execute('''
-        INSERT INTO users(telegram_id, first_name,username, phone) VALUES
+        INSERT INTO users(telegram_id,first_name,username,phone) VALUES
         (?,?,?,?);
         ''', (chat_id, first_name, username, phone))
         db.commit()
         msg = bot.send_message(chat_id, 'Что желаете сделать? ', reply_markup=choose_command())
-        return first_name, username, phone
     except:
         msg = bot.send_message(chat_id, 'НАЖМИТЕ НА КНОПКУ!', reply_markup=generate_phone_number())
         bot.register_next_step_handler(msg, register_user)
