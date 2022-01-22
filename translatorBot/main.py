@@ -135,9 +135,9 @@ def register_user(message):
         user_name = message.from_user.username
         phone = message.contact.phone_number
         cursor.execute('''
-               INSERT INTO users(telegram_id,first_name,user_name,phone) VALUES
-               (?,?,?,?); 
-               ''', (chat_id, first_name, user_name, phone))
+        INSERT INTO users(telegram_id,first_name,user_name,phone) VALUES
+        (?,?,?,?); 
+        ''', (chat_id, first_name, user_name, phone))
         db.commit()
         msg = bot.send_message(chat_id, 'Что желаете сделать?', reply_markup=choose_command())
     except:
