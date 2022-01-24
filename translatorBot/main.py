@@ -125,7 +125,17 @@ def command_start(message):  # message бу - ботдан фойдаланув�
         bot.send_message(chat_id,
                          f'''Этот бот создал <b>И.Б.Рустамбоевич</b>. Бот работает в тестовом режиме. Если у вас ест вопросы пишите сюда: @abu_Ali_ibn_Rustam''')
     elif message.text == '/history':
-        bot.send_message(chat_id, 'Ваша история: ')
+        chat_id = message.chat.id
+        cursor.execute('''
+        SELECT user_text, translate_text
+        FROM history_translation JOIN users
+        ON history_translation.user_id = users.user_id
+        WHERE telegram_id=?;
+        ''', (chat_id,))
+        history_list = cursor.fetchall()
+        db.commit()
+        for msg in history_list:
+            bot.send_message(chat_id, f'Ваша история:{msg} ')
 
 
 def register_user(message):
@@ -163,8 +173,11 @@ def translation(message):
     chat_id = message.chat.id
     word = message.text
     print(word)
-    if word == 'Определение \U0001F4DD':
-        definition_start(message)
+    if word in ['Определение \U0001F4DD', '/start', '/help', '/history']:
+        if word == 'Определение \U0001F4DD':
+            definition_start(message)
+        else:
+            command_start()
     else:
         # translator = Translator(from_lang='ru', to_lang='en')
         translator = Translator()
@@ -188,7 +201,7 @@ def translation(message):
 def wikipedia_answer(message):
     word = message.text
     chat_id = message.chat.id
-    if word in ['Перевод \U0001F504', '/start', '/help', '/history']:
+    if word in ['Перевод \U0001F504', 'Определение \U0001F4DD', '/start', '/help', '/history']:
         if word == 'Перевод \U0001F504':
             translate_start(message)
         else:
