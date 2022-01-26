@@ -198,31 +198,31 @@ def translation(message):
         # msg = bot.send_message(chat_id, 'Что желаете сделать?', reply_markup=choose_command())
 
 
-def wikipedia_answer(message):
-    word = message.text
-    chat_id = message.chat.id
-    if word in ['Перевод \U0001F504', 'Определение \U0001F4DD', '/start', '/help', '/history']:
-        if word == 'Перевод \U0001F504':
-            translate_start(message)
-        else:
-            command_start(message)
-    else:
-        full_url = f'https://ru.wikipedia.org/wiki/{word}'
-        print(full_url)
-        html = requests.get(full_url).text
-        soup = BeautifulSoup(html, 'html.parser')
-        definition = soup.find('p').get_text(strip=True)
-        print(definition)
-        cursor.execute('''
-                SELECT user_id FROM users WHERE telegram_id = ?;
-                ''', (chat_id,))
-        user_id = cursor.fetchone()[0]
-        cursor.execute('''
-                INSERT INTO history_definition (user_id,user_text,definition_text) VALUES (?,?,?);
-                ''', (user_id, word, definition))
-        db.commit()
-        bot.send_message(chat_id, definition)
-        definition_start(message)
+# def wikipedia_answer(message):
+#     word = message.text
+#     chat_id = message.chat.id
+#     if word in ['Перевод \U0001F504', 'Определение \U0001F4DD', '/start', '/help', '/history']:
+#         if word == 'Перевод \U0001F504':
+#             translate_start(message)
+#         else:
+#             command_start(message)
+#     else:
+#         full_url = f'https://ru.wikipedia.org/wiki/{word}'
+#         print(full_url)
+#         html = requests.get(full_url).text
+#         soup = BeautifulSoup(html, 'html.parser')
+#         definition = soup.find('p').get_text(strip=True)
+#         print(definition)
+#         cursor.execute('''
+#                 SELECT user_id FROM users WHERE telegram_id = ?;
+#                 ''', (chat_id,))
+#         user_id = cursor.fetchone()[0]
+#         cursor.execute('''
+#                 INSERT INTO history_definition (user_id,user_text,definition_text) VALUES (?,?,?);
+#                 ''', (user_id, word, definition))
+#         db.commit()
+#         bot.send_message(chat_id, definition)
+#         definition_start(message)
 
 
 bot.polling(none_stop=True)  # ботнинг тухтамасдан ишлаши учун

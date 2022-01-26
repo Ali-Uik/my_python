@@ -14,6 +14,6 @@ def generate_phone_number():  # фойдаланувчининг тел номе
 def choose_command():
     markup = ReplyKeyboardMarkup(resize_keyboard=True)
     translate = KeyboardButton(text='Перевод \U0001F504')
-    definition = KeyboardButton(text='Определение \U0001F4DD')
-    markup.add(translate, definition)
+    # definition = KeyboardButton(text='Определение \U0001F4DD')
+    markup.add(translate)
     return markup
