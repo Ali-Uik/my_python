@@ -36,16 +36,25 @@ class Category_parser:
         if self.name not in os.listdir():
             os.mkdir(str(self.name))
         # for i in range(1, self.page + 1):
-        for i in range(1, self.page + 1):
+        for i in range(1, 4):
             soup = self.get_soup(i)
             images_blocks = soup.find_all('a', class_='wallpapers__link')
             for block in images_blocks:
                 page_link = HOST + block['href']
-                print(page_link)
+                # print(block)
+                # print(page_link)
                 page_html = requests.get(page_link).text
                 page_soup = BeautifulSoup(page_html, 'html.parser')
                 section = page_soup.find_all('span', class_='wallpaper-table__cell')[1].get_text(strip=True)
-                print(section)
+                # print(section)
+                image_link = block.find('img', class_='wallpapers__image').get('src')
+                image_link = image_link.replace('300x168', section)
+                print(image_link)
+                if self.download:
+                    responseImage = requests.get(image_link).content
+                    image_name = image_link.replace('https://images.wallpaperscraft.ru/image/single/', '')
+                    with open(file=f'{self.name}/{image_name}.jpg', mode='wb') as file:
+                        file.write(responseImage)
 
 
 def parsing():
@@ -76,7 +85,7 @@ def parsing():
         parser = Category_parser(url=link,
                                  name=true_name,
                                  category_id=category_id,
-                                 download=False)
+                                 download=True)
         parser.get_data()
 
 
