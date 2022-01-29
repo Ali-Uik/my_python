@@ -50,6 +50,10 @@ class Category_parser:
                 image_link = block.find('img', class_='wallpapers__image').get('src')
                 image_link = image_link.replace('300x168', section)
                 print(image_link)
+                cursor.execute('''INSERT OR IGNORE INTO images(image_link,category_id) VALUES (?,?)''',
+                               (image_link, self.category_id))
+                db.commit()
+
                 if self.download:
                     responseImage = requests.get(image_link).content
                     image_name = image_link.replace('https://images.wallpaperscraft.ru/image/single/', '')
@@ -72,9 +76,10 @@ def parsing():
         pages = int(re.findall(r'[0-9][0-9]+', name)[0]) // 15
         print(pages)
         cursor.execute('''
-            INSERT INTO categories(category_name) VALUES (?)
-            ON CONFLICT DO NOTHING;
+            INSERT OR IGNORE INTO categories(category_name) VALUES (?);
         ''', (true_name,))
+        # INSERT INTO categories(category_name) VALUES(?) ON CONFLICT DO NOTHING;
+        # INSERT OR IGNORE INTO categories(category_name) VALUES(?) ;
         db.commit()
         print(f'Парсим категорию: {true_name}')
         cursor.execute('''
@@ -85,7 +90,7 @@ def parsing():
         parser = Category_parser(url=link,
                                  name=true_name,
                                  category_id=category_id,
-                                 download=True)
+                                 download=False)
         parser.get_data()
 
 
