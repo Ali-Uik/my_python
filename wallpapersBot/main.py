@@ -50,7 +50,7 @@ class Category_parser:
                 image_link = block.find('img', class_='wallpapers__image').get('src')
                 image_link = image_link.replace('300x168', section)
                 print(image_link)
-                cursor.execute('''INSERT OR IGNORE INTO images(image_link,category_id) VALUES (?,?)''',
+                cursor.execute('''INSERT OR IGNORE INTO images(image_link,category_id) VALUES (?,?);''',
                                (image_link, self.category_id))
                 db.commit()
 

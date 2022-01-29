@@ -2,3 +2,4 @@ pip install requests
 pip install BeautifulSoup4
 pip install pillow - расмлар билан ишлаш учун библиотека
 pip install python-dotenv - .env билан ишлаш учун
+pip install pytelegrambotapi
