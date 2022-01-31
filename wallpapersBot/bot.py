@@ -38,17 +38,24 @@ def get_image(message):
     resolution = re.search(r'[0-9]+x[0-9]+', random_image_link)[0]
     cursor.execute('''SELECT image_id FROM images WHERE image_link = ?;''', (random_image_link,))
     image_id = cursor.fetchone()[0]
+    db.commit()
     try:
         bot.send_photo(chat_id=chat_id,
                        photo=random_image_link,
-                       caption=f'Разрешение {resolution}')
+                       caption=f'Разрешение {resolution}',
+                       reply_markup=download_button(image_id))
     except Exception as e:
         new_image_link = random_image_link.replace(resolution, '1920x1080')
         bot.send_photo(chat_id=chat_id,
                        photo=new_image_link,
-                       caption=f'Разрешение 1920x1080 заменили')
+                       caption=f'Разрешение 1920x1080 заменили',
+                       reply_markup=download_button(image_id))
     shou_categories(message)
-    db.commit()
+
+
+@bot.callback_query_handler(func=lambda call: 'download' in call.data)
+def download_reaction(call):
+    pass
 
 
 bot.polling(none_stop=True)
