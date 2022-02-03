@@ -56,10 +56,11 @@ def get_image(message):
 @bot.callback_query_handler(func=lambda call: 'download' in call.data)
 def download_reaction(call):
     _, image_id = call.data.split('_')
+    print(image_id)
     cursor.execute('''SELECT image_link FROM images WHERE image_id = ?;''', (image_id,))
-    db.commit()
     image_link = cursor.fetchone()[0]
-    bot.send_document(chat_id=call.message.chat.id, document=image_link)
+    print(image_link)
+    bot.send_document(chat_id=call.message.chat.id, data=image_link, document=image_link)
     bot.answer_callback_query(call.id, text='Вот ваша картинка ')
 
 
