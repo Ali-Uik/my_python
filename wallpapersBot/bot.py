@@ -21,7 +21,6 @@ def shou_categories(message):
     chat_id = message.chat.id
     cursor.execute('''SELECT category_name FROM categories;''')
     categories = cursor.fetchall()
-
     msg = bot.send_message(chat_id, 'Выберите категорию', reply_markup=generate_categories(categories))
     bot.register_next_step_handler(msg, get_image)
 
@@ -61,7 +60,7 @@ def download_reaction(call):
     image_link = cursor.fetchone()[0]
     print(image_link)
     bot.send_document(chat_id=call.message.chat.id, data=image_link, document=image_link)
-    bot.answer_callback_query(call.id, text='Вот ваша картинка ')
+    bot.answer_callback_query(call.id, show_alert=False)
 
 
 bot.polling(none_stop=True)
