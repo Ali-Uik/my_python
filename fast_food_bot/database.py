@@ -85,12 +85,21 @@ def create_order_products_table():
                     ''')
 
 
-create_users_table()
-create_cart_table()
-create_cart_products_table()
-create_categories_table()
-create_products_table()
-create_orders_table()
-create_order_products_table()
+# create_users_table()
+# create_cart_table()
+# create_cart_products_table()
+# create_categories_table()
+# create_products_table()
+# create_orders_table()
+# create_order_products_table()
+
+def insert_categories():
+    cursor.execute('''
+    INSERT INTO categories(category_name) VALUES 
+    ('Лаваш'),('Донар'),('Бургер'),('Хот-Дог'),('Десерты'),('Напитки'),('Соусы')''')
+
+
+insert_categories()
+
 database.commit()
 database.close()
