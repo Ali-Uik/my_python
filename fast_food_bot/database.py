@@ -99,7 +99,17 @@ def insert_categories():
     ('Лаваш'),('Донар'),('Бургер'),('Хот-Дог'),('Десерты'),('Напитки'),('Соусы')''')
 
 
-insert_categories()
+# insert_categories()
+
+def insert_products():
+    cursor.execute('''INSERT INTO products(category_id,product_name,price,ingredients) VALUES
+    (1,'mini lavash', 20000, 'Мясо, тесто, помидоры'),
+    (1,'Лаваш говяжий', 25000, 'Мясо, тесто, помидоры'),
+    (1,'Лаваш куриный', 25000, 'Курица, тесто, помидоры'),
+    (1,'Лаваш с сыром', 27000, 'Курица, тесто, сыр')''')
+
+
+insert_products()
 
 database.commit()
 database.close()

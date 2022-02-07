@@ -24,3 +24,15 @@ def generate_category_menu():
     database.close()
     build_inline_menu(markup, categories, 'category')
     return markup
+
+
+def generate_products_menu(category_id: int):
+    markup = InlineKeyboardMarkup()
+    database = sqlite3.connect('fastfood.db')
+    cursor = database.cursor()
+    cursor.execute('''SELECT product_id, product_name FROM products WHERE category_id = ?''',
+                   (category_id,))
+    products = cursor.fetchall()
+    database.close()
+    build_inline_menu(markup, products, 'product')
+    return markup

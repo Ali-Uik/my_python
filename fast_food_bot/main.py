@@ -63,4 +63,14 @@ async def make_order(message: Message):
     await bot.send_message(chat_id, 'Выберите категорию: ', reply_markup=generate_category_menu())
 
 
+@dp.callback_query_handler(lambda call: 'category' in call.data)
+async def show_products(call: CallbackQuery):
+    chat_id = call.message.chat.id
+    message_id = call.message.message_id
+    _, category_id = call.data.split('_')  # _ Это штука нам не нужна
+    category_id = int(category_id)
+    await bot.edit_message_text('Выберите продукт: ', chat_id, message_id,
+                                reply_markup=generate_products_menu(category_id))
+
+
 executor.start_polling(dp, skip_updates=True)
