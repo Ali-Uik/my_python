@@ -1,8 +1,11 @@
+import os
 import sqlite3
 from telebot import TeleBot
 from keyboards import *
 import random
 import re
+import requests
+from utils import *
 
 db = sqlite3.connect('wallpapers.db', check_same_thread=False)
 cursor = db.cursor()
@@ -36,6 +39,14 @@ def get_image(message):
     random_image_link = image_links[random_index][0]
     resolution = re.search(r'[0-9]+x[0-9]+', random_image_link)[0]
     cursor.execute('''SELECT image_id FROM images WHERE image_link = ?;''', (random_image_link,))
+
+    responseImage = requests.get(random_image_link).content
+    image_name = random_image_link.replace('https://images.wallpaperscraft.ru/image/single/', '')
+    with open(file=f'{image_name}', mode='wb') as file:
+        file.write(responseImage)
+    crop_image_to_mobile(image_name)
+    watermark_text(image_name)
+    # os.remove(image_name)  # Удалит скаченную картину
     image_id = cursor.fetchone()[0]
     db.commit()
     try:
