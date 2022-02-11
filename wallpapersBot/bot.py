@@ -49,11 +49,17 @@ def get_image(message):
     # os.remove(image_name)  # Удалит скаченную картину
     image_id = cursor.fetchone()[0]
     db.commit()
+
+    img = open(f'water_{image_name}', mode='rb')
     try:
         bot.send_photo(chat_id=chat_id,
-                       photo=random_image_link,
+                       photo=img,
                        caption=f'Разрешение {resolution}',
                        reply_markup=download_button(image_id))
+        img.close()
+        os.remove(image_name)
+        os.remove(f'water_{image_name}')
+        os.remove(f'crop_{image_name}')
     except Exception as e:
         new_image_link = random_image_link.replace(resolution, '1920x1080')
         bot.send_photo(chat_id=chat_id,
@@ -63,14 +69,34 @@ def get_image(message):
     shou_categories(message)
 
 
-@bot.callback_query_handler(func=lambda call: 'download' in call.data)
-def download_reaction(call):
+@bot.callback_query_handler(func=lambda call: 'downloadd' in call.data)
+def downloadd_reaction(call):
     _, image_id = call.data.split('_')
     print(image_id)
     cursor.execute('''SELECT image_link FROM images WHERE image_id = ?;''', (image_id,))
     image_link = cursor.fetchone()[0]
     print(image_link)
     bot.send_document(chat_id=call.message.chat.id, data=image_link, document=image_link)
+    bot.answer_callback_query(call.id, show_alert=False)
+
+
+@bot.callback_query_handler(func=lambda call: 'downloadm' in call.data)
+def downloadm_reaction(call):
+    _, image_id = call.data.split('_')
+    print(image_id)
+    cursor.execute('''SELECT image_link FROM images WHERE image_id = ?;''', (image_id,))
+    image_link = cursor.fetchone()[0]
+    responseImage = requests.get(image_link).content
+    image_name = image_link.replace('https://images.wallpaperscraft.ru/image/single/', '')
+    with open(file=f'{image_name}', mode='wb') as file:
+        file.write(responseImage)
+    crop_image_to_mobile(image_name)
+    img = open(f'crop_{image_name}', mode='rb')
+    print(image_link)
+    bot.send_document(chat_id=call.message.chat.id, data=img, document=img)
+    img.close()
+    os.remove(image_name)
+    os.remove(f'crop_{image_name}')
     bot.answer_callback_query(call.id, show_alert=False)
 
 

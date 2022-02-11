@@ -31,6 +31,7 @@ def create_products_table():
         product_name VARCHAR(20) NOT NULL UNIQUE,
         price DECIMAL(12, 2) NOT NULL,
         ingredients VARCHAR(50),
+        images TEXT,
         FOREIGN KEY(category_id) REFERENCES categories(category_id)
                                         );
                 ''')
@@ -89,7 +90,7 @@ def create_order_products_table():
 # create_cart_table()
 # create_cart_products_table()
 # create_categories_table()
-# create_products_table()
+create_products_table()
 # create_orders_table()
 # create_order_products_table()
 
@@ -102,13 +103,17 @@ def insert_categories():
 # insert_categories()
 
 def insert_products():
-    cursor.execute('''INSERT INTO products(category_id,product_name,price,ingredients) VALUES
-    (1,'mini lavash', 20000, 'Мясо, тесто, помидоры'),
-    (1,'Лаваш говяжий', 25000, 'Мясо, тесто, помидоры'),
-    (1,'Лаваш куриный', 25000, 'Курица, тесто, помидоры'),
-    (1,'Лаваш с сыром', 27000, 'Курица, тесто, сыр')''')
+    cursor.execute('''INSERT INTO products(category_id,product_name,price,ingredients,images) VALUES
+    (1,'mini lavash', 20000, 'Мясо, тесто, помидоры', 'media/lavash_1.jpg'),
+    (1,'Лаваш говяжий', 25000, 'Мясо, тесто, помидоры', 'media/lavash_2.jpg'),
+    (1,'Лаваш куриный', 25000, 'Курица, тесто, помидоры', 'media/lavash_3.jpg')''')
 
 
+def drop_table_products():
+    cursor.execute('''DROP TABLE IF EXISTS products;''')
+
+
+# drop_table_products()
 insert_products()
 
 database.commit()

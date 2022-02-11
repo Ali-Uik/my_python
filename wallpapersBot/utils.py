@@ -19,7 +19,7 @@ def crop_image_to_mobile(image_path):
 def watermark_text(image_name):
     im = Image.open(image_name)
     drawing = ImageDraw.Draw(im)
-    color = (0,0,0)
+    color = (255, 255, 255)
     font = ImageFont.truetype('SourceSerif4-Italic-VariableFont_opsz,wght.ttf', 48)
     drawing.text((0, 0), '@abu_Ali_ibn_Rustam', fill=color, font=font)
     im.save(f'water_{image_name}')

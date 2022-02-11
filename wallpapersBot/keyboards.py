@@ -13,7 +13,8 @@ def generate_categories(categories):
 
 def download_button(image_id):
     markup = InlineKeyboardMarkup()
-    download = InlineKeyboardButton(text='Скачать в максимальном качестве', callback_data=f'download_{image_id}')
-    markup.add(download)
+    download_d = InlineKeyboardButton(text='Скачать для десктоп', callback_data=f'downloadd_{image_id}')
+    download_m = InlineKeyboardButton(text='Скачать для мобильного', callback_data=f'downloadm_{image_id}')
+    markup.add(download_d,download_m)
     return markup
 
