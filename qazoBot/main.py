@@ -23,24 +23,45 @@ def sign_in(message):
     bot.register_next_step_handler(word, sign_in_start)
 
 
+@bot.message_handler(regexp=r'Ro\'yxatdan o\'tish')
+def sign_in(message):
+    chat_id = message.chat.id
+    word = bot.send_message(chat_id, 'Ismingizni kiriting!')
+    bot.register_next_step_handler(word, sign_up_start)
+
+
 def sign_in_start(message):
     chat_id = message.chat.id
     user_text = message.text
-    print(user_text)
-    cursor.execute('''SELECT db_id FROM users;''')
-    db_ids = cursor.fetchall()
-    print(db_ids)
-    for db_id in db_ids:
-        print(db_id)
-        if db_id == user_text:
-            bot.send_message(chat_id, 'Ishladi')
-        else:
-            bot.send_message(chat_id, 'Ishlamadi')
+    cursor.execute('''SELECT db_id FROM users WHERE db_id = ?;''', (user_text,))
+    db_id = cursor.fetchall()
+    db.close()
+    if db_id:
+        bot.send_message(chat_id, 'Ishladi')
+    else:
+        bot.send_message(chat_id,
+                         'Siz kiritgan ID bizning bazada mavjud emas. Iltimos ro\'yxatdan o\'tish tugmasini bosib, ro\'yxatdan o\'ting.')
 
 
-# def print_message(message):
-#     text = message.text
-#     print(text)
+def sign_up_start(message):
+    chat_id = message.chat.id
+    user_text = message.text
+    cursor.execute('''SELECT MAX(id) FROM users;''')
+    max_id = cursor.fetchone()[0]
+    # print(max_id)
+    db.commit()
+    bot.send_message(chat_id, max_id)
+    # db_id = f'{chat_id}_{max_id + 1}'
+    # cursor.execute('''INSERT INTO users(chat_id,db_id,user_name) VALUES (?,?,?);''',
+    #                (chat_id, db_id, user_text))
+    # db.commit()
+    # bot.send_message(chat_id,
+    #                  f'Hurmatli <b>{user_text}</b> siz bizning botda ro\'yhatdan o\'tdingiz. Sizning botdagi IDingiz '
+    #                  f'<b>{db_id}</b>.Siz bu ID orqali xoxlagan qurilmadan telegram orqali kirishingiz mumkin.')
+
+    # def print_message(message):
+    #     text = message.text
+    #     print(text)
 
 
 bot.polling(none_stop=True)

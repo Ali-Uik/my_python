@@ -1,5 +1,6 @@
 from aiogram import Bot, Dispatcher, executor, types
 import requests
+from pprint import pprint
 
 # Bot - объект бота, Dispatcher - слушатель действий бота, executor - запускатель бота
 from aiogram.types import Message, CallbackQuery, Location, ReplyKeyboardMarkup
@@ -18,7 +19,7 @@ async def handle_location(message: types.Message):
     current_lat = message.location.latitude
     current_lon = message.location.longitude
     location_name1 = location_name(current_lat, current_lon)
-    print(location_name1)
+    pprint(location_name1)
     data = weather(location_name1)
     temp = data['main']['temp']
     humidity = data['main']['humidity']
