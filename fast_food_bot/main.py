@@ -9,7 +9,7 @@ from keyboards import *
 
 load_dotenv()
 token = os.getenv('TOKEN')
-bot = Bot(token)
+bot = Bot(token, parse_mode='HTML')
 dp = Dispatcher(bot)  # Создали объект слежки ботам
 
 
@@ -71,6 +71,28 @@ async def show_products(call: CallbackQuery):
     category_id = int(category_id)
     await bot.edit_message_text('Выберите продукт: ', chat_id, message_id,
                                 reply_markup=generate_products_menu(category_id))
+
+
+@dp.callback_query_handler(lambda call: 'product' in call.data)
+async def show_detail_products(call: CallbackQuery):
+    chat_id = call.message.chat.id
+    message_id = call.message.message_id
+    # product_1 -> _='product' product_id=1
+    _, product_id = call.data.split('_')
+    database = sqlite3.connect('fastfood.db')
+    cursor = database.cursor()
+    # Полужаем всю информацию из бази о продукте
+    cursor.execute('''SELECT product_id,product_name, price, ingredients, category_id, images 
+    FROM products
+    WHERE product_id = ?;''', (product_id,))
+    product = cursor.fetchone()
+    print(product)
+    database.close()
+    await bot.delete_message(chat_id, message_id)
+    with open(product[5], mode='rb') as img:
+        await bot.send_photo(chat_id,
+                             photo=img,
+                             caption=f"""<strong>{product[1]}</strong>\n<strong>Ингридиенты: {product[3]}</strong>\n<strong>Цена: {product[2]}</strong>""")
 
 
 executor.start_polling(dp, skip_updates=True)
