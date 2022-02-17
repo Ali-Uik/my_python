@@ -92,7 +92,47 @@ async def show_detail_products(call: CallbackQuery):
     with open(product[5], mode='rb') as img:
         await bot.send_photo(chat_id,
                              photo=img,
-                             caption=f"""<strong>{product[1]}</strong>\n<strong>Ингридиенты: {product[3]}</strong>\n<strong>Цена: {product[2]}</strong>""")
+                             caption=f"""<strong>{product[1]}</strong>\n<strong>Ингридиенты: {product[3]}</strong>\n<strong>Цена: {product[2]}</strong>""",
+                             reply_markup=generate_product_detail_menu(
+                                 product_id=product_id,
+                                 category_id=product[4]))
+
+
+@dp.callback_query_handler(lambda call: call.data.startswith("cart"))
+async def add_product_cart(call: CallbackQuery):
+    # cart_1_2 - 1 - id product, 2 - quantiry
+    chat_id = call.message.chat.id
+    _, product_id, quantity = call.data.split('_')
+    product_id, quantity = int(product_id), int(quantity)
+    database = sqlite3.connect('fastfood.db')
+    cursor = database.cursor()
+    # получаем корзину пользователья
+    cursor.execute('''
+    SELECT cart_id FROM carts
+    WHERE user_id = (SELECT user_id FROM users WHERE telegram_id = ?);
+    ''', (chat_id,))
+    cart_id = cursor.fetchone()[0]
+    # Получаем информацию о продукте  название и цена
+    cursor.execute('''SELECT product_name, price FROM products WHERE product_id = ?''', (product_id,))
+    product_name, price = cursor.fetchone()  # ('Лаваш', 25000)
+    final_price = quantity * price  # Общая цена
+    try:
+        cursor.execute('''
+        INSERT INTO cart_products(cart_id, product_name, quantity, final_price)
+        VALUES (?,?,?,?)''', (cart_id, product_name, quantity, final_price))
+        database.commit()
+        await bot.answer_callback_query(call.id, text='Продукт успешно добавлен')
+    except:
+        cursor.execute('''
+        UPDATE cart_products
+        SET quantity = ?,
+        final_price = ?
+        WHERE product_name = ? AND cart_id =?
+        ''', (quantity, final_price, product_name, cart_id))
+        database.commit()
+        await bot.answer_callback_query(call.id, text='Количество успешно изменено')
+    finally:
+        database.close()
 
 
 executor.start_polling(dp, skip_updates=True)

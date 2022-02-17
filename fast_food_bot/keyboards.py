@@ -36,3 +36,26 @@ def generate_products_menu(category_id: int):
     database.close()
     build_inline_menu(markup, products, 'product')
     return markup
+
+
+def generate_product_detail_menu(product_id: int, category_id: int):
+    # cart_1_2 -> cart - ключевое слово, 1 - id продукта, 2-количество продуктов
+    markup = InlineKeyboardMarkup()
+    number_list = [i for i in range(1, 10)]
+    in_row = 3  # Сбрасиваем
+    rows = len(number_list) // in_row
+    if len(number_list) % in_row != 0:
+        rows += 1
+    start = 0
+    end = in_row
+    for i in range(rows):
+        new_list = []
+        for number in number_list[start:end]:
+            new_list.append(InlineKeyboardButton(text=str(number), callback_data=f'cart_{product_id}_{number}'))
+        markup.row(*new_list)
+        start = end
+        end += in_row
+    markup.row(
+        InlineKeyboardButton(text='Назад', callback_data=f'back_{category_id}')
+    )
+    return markup
