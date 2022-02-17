@@ -15,3 +15,7 @@ def build_inline_menu(markup: InlineKeyboardMarkup, lst: list, prefix: str, in_r
         markup.row(*new_list)
         start = end
         end += in_row
+    if prefix == 'product':
+        markup.row(
+            InlineKeyboardButton(text='Назад', callback_data='main_menu')
+        )

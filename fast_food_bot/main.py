@@ -135,4 +135,50 @@ async def add_product_cart(call: CallbackQuery):
         database.close()
 
 
+@dp.callback_query_handler(lambda call: 'back' in call.data)
+async def return_to_category(call: CallbackQuery):
+    chat_id = call.message.chat.id
+    message_id = call.message.message_id
+    # back_1
+    _, category_id = call.data.split('_')
+    await bot.delete_message(chat_id, message_id)
+    await bot.send_message(chat_id=chat_id,
+                           text='Выберите продукт: ',
+                           reply_markup=generate_products_menu(category_id))
+
+
+@dp.callback_query_handler(lambda call: 'main_menu' in call.data)
+async def return_to_main_menu(call: CallbackQuery):
+    chat_id = call.message.chat.id
+    message_id = call.message.message_id
+    await bot.edit_message_text(chat_id=chat_id,
+                                message_id=message_id,
+                                text='Выберите категорию: ',
+                                reply_markup=generate_category_menu())
+
+
+@dp.message_handler(lambda message: 'Корзина' in message.text)
+async def show_cart(message: Message, edit_message: bool = False):
+    chat_id = message.chat.id
+    database = sqlite3.connect('fastfood.db')
+    cursor = database.cursor()
+    # Получение id из cart_id
+    cursor.execute('''SELECT cart_id FROM cart WHERE user_id = 
+    (
+    SELECT user_id FROM users WHERE telegram_id = ?
+    )''', (chat_id,))
+    cart_id = cursor.fetchone()[0]
+    try:
+        cursor.execute('''
+        UPDATE carts
+        SET total_products = (
+            SELECT SUM(quantity) FROM cart_products
+            WHERE cart_id = :cart_id
+            ),
+            total_price = (SELECT SUM(final_price) FROM cart_products
+             WHERE cart_id = :cart_id)
+             WHERE cart_id = :cart_id
+        ''', {'cart_id':cart_id})
+
+
 executor.start_polling(dp, skip_updates=True)
