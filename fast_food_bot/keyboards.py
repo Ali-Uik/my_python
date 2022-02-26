@@ -59,3 +59,21 @@ def generate_product_detail_menu(product_id: int, category_id: int):
         InlineKeyboardButton(text='Назад', callback_data=f'back_{category_id}')
     )
     return markup
+
+
+def generate_cart_menu(cart_id: int):
+    markup = InlineKeyboardMarkup
+    markup.row(
+        InlineKeyboardButton(text='🚀 Оформить заказ', callback_data=f'order_{cart_id}')
+    )
+    database = sqlite3.connect('fastfood.db')
+    cursor = database.cursor()
+    cursor.execute('''SELECT cart_product_id, product_name 
+    FROM cart_products
+    WHERE cart_id=?''', (cart_id,))
+    cart_products = cursor.fetchall()
+    database.close()
+    for product_id, product_name in cart_products:
+        markup.row(
+            InlineKeyboardButton(text=f'❌ {product_name}', callback_data=f'' )
+        )

@@ -163,7 +163,7 @@ async def show_cart(message: Message, edit_message: bool = False):
     database = sqlite3.connect('fastfood.db')
     cursor = database.cursor()
     # Получение id из cart_id
-    cursor.execute('''SELECT cart_id FROM cart WHERE user_id = 
+    cursor.execute('''SELECT cart_id FROM carts WHERE user_id = 
     (
     SELECT user_id FROM users WHERE telegram_id = ?
     )''', (chat_id,))
@@ -178,7 +178,38 @@ async def show_cart(message: Message, edit_message: bool = False):
             total_price = (SELECT SUM(final_price) FROM cart_products
              WHERE cart_id = :cart_id)
              WHERE cart_id = :cart_id
-        ''', {'cart_id':cart_id})
+        ''', {'cart_id': cart_id})
+        database.commit()
+    except:
+        await bot.send_message(chat_id, 'Корзина не доступно!')
+        database.close()
+        return
 
+    # Получаем оющую сумму заказа
+    cursor.execute('''
+    SELECT total_products,total_price 
+    FROM carts 
+    WHERE user_id = (SELECT user_id 
+                     FROM users 
+                     WHERE telegram_id = ?)''', (chat_id,))
+    total_products, total_price = cursor.fetchone()
+    cursor.execute('''
+    SELECT product_name, quantity, final_price 
+    FROM cart_products
+    WHERE cart_id = ?''', (cart_id,))
+    cart_products = cursor.fetchall()
+    text = 'Ваша корзина: \n\n'
+    i = 0
+    for product_name, quantity, final_price in cart_products:
+        i += 1
+        text += f'''{i}. {product_name}
+Количество:{quantity}
+Общая стоимость:{final_price}\n\n'''
+    text += f'''Общее количество продуктов: {total_products}
+Общая стоимость корзини: {total_price}'''
+    await bot.send_message(chat_id, text)
+# Подцепить кнопки к корзине
+# Сделать логику удаление продукта из корзины
+# Оплата
 
 executor.start_polling(dp, skip_updates=True)
