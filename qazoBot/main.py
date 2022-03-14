@@ -33,31 +33,40 @@ def sign_in(message):
 def sign_in_start(message):
     chat_id = message.chat.id
     user_text = message.text
-    cursor.execute('''SELECT db_id FROM users WHERE db_id = ?;''', (user_text,))
-    db_id = cursor.fetchall()
-    db.close()
-    if db_id:
-        bot.send_message(chat_id, 'Ishladi')
+    print(f'user_text={user_text}')
+    print(type(user_text))
+    if type(user_text) is int:
+        cursor.execute('''SELECT db_id FROM users WHERE db_id = ?;''', (user_text,))
+        db_id = cursor.fetchall()
+        print(db_id)
+        db.close()
+        if db_id:
+            bot.send_message(chat_id, 'Ishladi')
+        else:
+            bot.send_message(chat_id,
+                             'Siz kiritgan ID bizning bazada mavjud emas. Iltimos ro\'yxatdan o\'tish tugmasini bosib, ro\'yxatdan o\'ting.')
     else:
-        bot.send_message(chat_id,
-                         'Siz kiritgan ID bizning bazada mavjud emas. Iltimos ro\'yxatdan o\'tish tugmasini bosib, ro\'yxatdan o\'ting.')
+        bot.send_message(chat_id, 'Siz noto\'g\'ri ma\'lumot kiritdingiz!')
 
 
 def sign_up_start(message):
     chat_id = message.chat.id
     user_text = message.text
+    print(user_text)
     cursor.execute('''SELECT MAX(id) FROM users;''')
     max_id = cursor.fetchone()[0]
-    # print(max_id)
-    db.commit()
-    bot.send_message(chat_id, max_id)
-    # db_id = f'{chat_id}_{max_id + 1}'
-    # cursor.execute('''INSERT INTO users(chat_id,db_id,user_name) VALUES (?,?,?);''',
-    #                (chat_id, db_id, user_text))
+
     # db.commit()
-    # bot.send_message(chat_id,
-    #                  f'Hurmatli <b>{user_text}</b> siz bizning botda ro\'yhatdan o\'tdingiz. Sizning botdagi IDingiz '
-    #                  f'<b>{db_id}</b>.Siz bu ID orqali xoxlagan qurilmadan telegram orqali kirishingiz mumkin.')
+    # bot.send_message(chat_id, max_id)
+    # db.close()
+    db_id = f'{chat_id}{max_id + 1}'
+    cursor.execute('''INSERT INTO users(chat_id,db_id,user_name) VALUES (?,?,?);''',
+                   (chat_id, db_id, user_text))
+    db.commit()
+    db.close()
+    bot.send_message(chat_id,
+                     f'Hurmatli <b>{user_text}</b> siz bizning botda ro\'yhatdan o\'tdingiz. Sizning botdagi IDingiz '
+                     f'<b>{db_id}</b>.Siz bu ID orqali xoxlagan qurilmadan telegram orqali kirishingiz mumkin.')
 
     # def print_message(message):
     #     text = message.text
